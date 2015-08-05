@@ -57,7 +57,7 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'browserify']);
+gulp.task('default', ['copy_index', 'browserify', 'sass']);
 
 gulp.task('compiled', ['default']);
 
