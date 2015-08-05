@@ -19,7 +19,7 @@ import Landing from './views/Landing.js';
 let App = React.createClass({
   render() {
     return (
-      <div className="nav">
+      <nav className="nav">
         <Link to="app">Home</Link>
         <Link to="review">Review</Link>
         <Link to="cards">Cards</Link>
@@ -27,7 +27,7 @@ let App = React.createClass({
         <Link to="landing">Landing</Link>
 
         <RouteHandler/>
-      </div>
+      </nav>
     );
   }
 });
