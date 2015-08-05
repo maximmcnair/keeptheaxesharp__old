@@ -30,6 +30,16 @@ gulp.task('browserify', function () {
 });
 
 /*
+ * Javascript Testing
+ */
+var mocha = require('gulp-mocha');
+gulp.task('js:test', function () {
+  return gulp.src('test.js', {read: false})
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha({reporter: 'nyan'}));
+});
+
+/*
  * Sass processing
  */
 var sass = require('gulp-sass');
@@ -57,10 +67,14 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'browserify', 'sass']);
+gulp.task('default', ['copy_index', 'sass', 'browserify', 'js:test']);
 
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.*', ['default']);
+  gulp.watch([
+    'src/**/*.*',
+    'test/*.*',
+    'test/**/*.*'
+  ], ['default']);
 });
