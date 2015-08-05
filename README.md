@@ -1,4 +1,6 @@
 # Keep The Axe Sharp
+[ ![Codeship Status for maximmcnair/keeptheaxesharp](https://codeship.com/projects/2c3e1af0-1dd0-0133-2090-06d3bb3e96db/status?branch=master)](https://codeship.com/projects/95113)
+
 
 ## User Stories
 ### Review
