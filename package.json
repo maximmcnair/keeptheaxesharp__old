@@ -13,6 +13,10 @@
     "url": "https://github.com/maximmcnair/keeptheaxesharp/issues"
   },
   "homepage": "https://github.com/maximmcnair/keeptheaxesharp",
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-webserver": "^0.9.1",
