@@ -5,15 +5,21 @@
 'use strict';
 
 var gulp = require('gulp');
-var webserver = require('gulp-webserver');
+
+/*
+ * Copy index file
+ */
+gulp.task('copy_index', function () {
+  gulp.src('src/*.html').pipe(gulp.dest('public/'));
+});
+
+/*
+ * Javascript building
+ */
 var browserify = require('gulp-browserify');
 /* eslint-disable no-unused-vars */
 var babelify = require('babelify');
 /* eslint-enable no-unused-vars */
-
-gulp.task('copy_index', function () {
-  gulp.src('src/*.html').pipe(gulp.dest('public/'));
-});
 
 gulp.task('browserify', function () {
   return gulp.src('./src/js/app.js', {entry: true})
@@ -23,18 +29,38 @@ gulp.task('browserify', function () {
     .pipe(gulp.dest('public/assets/js/'));
 });
 
-gulp.task('default', ['copy_index', 'browserify']);
-
-gulp.task('compiled', ['default']);
-
-gulp.task('watch', function () {
-  gulp.watch('src/**/*.*', ['default']);
+/*
+ * Sass processing
+ */
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+gulp.task('sass', function () {
+  return gulp.src('./src/sass/main.sass')
+  .pipe(sourcemaps.init())
+  .pipe(sass({indentedSyntax: true}))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./public/assets/css'));
 });
 
+/*
+ * Webserver
+ */
+var webserver = require('gulp-webserver');
 gulp.task('webserver', function () {
   gulp.src('public')
     .pipe(webserver({
       open: true,
       fallback: 'index.html'
     }));
+});
+
+/*
+ * Gulp user tasks
+ */
+gulp.task('default', ['copy_index', 'browserify']);
+
+gulp.task('compiled', ['default']);
+
+gulp.task('watch', function () {
+  gulp.watch('src/**/*.*', ['default']);
 });
