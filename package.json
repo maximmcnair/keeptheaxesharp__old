@@ -1,0 +1,20 @@
+{
+  "name": "keeptheaxesharp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maximmcnair/keeptheaxesharp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maximmcnair/keeptheaxesharp/issues"
+  },
+  "homepage": "https://github.com/maximmcnair/keeptheaxesharp",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-webserver": "^0.9.1"
+  }
+}
