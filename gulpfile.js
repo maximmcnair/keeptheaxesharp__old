@@ -79,6 +79,7 @@ gulp.task('compiled', ['default']);
 gulp.task('watch', function () {
   gulp.watch([
     'src/**/*.*',
+    'src/**/**/*.*',
     'test/*.*',
     'test/**/*.*'
   ], ['default']);

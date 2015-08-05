@@ -11,10 +11,10 @@ import Router from 'react-router';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 /* eslint-enable no-unused-vars */
 
-import Review from './views/Review.js';
-import Cards from './views/Cards.js';
-import Create from './views/Create.js';
-import Landing from './views/Landing.js';
+import Review from './views/review.js';
+import Cards from './views/cards.js';
+import Create from './views/create.js';
+import Landing from './views/landing.js';
 
 let App = React.createClass({
   render() {
