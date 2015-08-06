@@ -1,0 +1,19 @@
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+@mixin retina
+	@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5)
+		@content
+
+@mixin responsiveWidth($target, $context)
+  width: #{(($target / $context) * 100)}%
+
+@mixin responsiveMarginRight($target, $context)
+  margin-right: #{(($target / $context) * 100)}%

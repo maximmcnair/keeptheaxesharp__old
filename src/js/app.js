@@ -19,15 +19,18 @@ import Landing from './views/landing.js';
 let App = React.createClass({
   render() {
     return (
-      <nav className="nav">
-        <Link to="app">Home</Link>
-        <Link to="review">Review</Link>
-        <Link to="cards">Cards</Link>
-        <Link to="create">Create</Link>
-        <Link to="landing">Landing</Link>
-
-        <RouteHandler/>
-      </nav>
+      <section className="content">
+        <nav className="nav">
+          <Link to="app">Home</Link>
+          <Link to="review">Review</Link>
+          <Link to="cards">Cards</Link>
+          <Link to="create">Create</Link>
+          <Link to="landing">Landing</Link>
+        </nav>
+        <section className="body">
+          <RouteHandler/>
+        </section>
+      </section>
     );
   }
 });

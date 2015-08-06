@@ -1,0 +1,30 @@
+// Structure
+html
+  box-sizing: border-box
+
+*,
+*:before,
+*:after
+  box-sizing: inherit
+
+body
+  background: $color-bg
+  overflow-x: hidden
+  margin: 0
+
+img
+video
+  max-width: 100%
+  height: auto
+  width: auto
+  vertical-align: top
+
+.content
+  width: 100%
+  max-width: 933px
+  margin: 15px auto 0 auto
+  padding: 0px 8px
+
+.body
+  @include clearfix
+  margin-top: 115px
