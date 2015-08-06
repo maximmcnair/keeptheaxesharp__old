@@ -1,0 +1,19 @@
+.btn
+  font-weight: 600
+  font-size: 16px
+  text-decoration: none
+  text-align: center
+  padding: 14px 48px 15px 48px
+  margin-top: 20px
+  display: inline-block
+  cursor: pointer
+  border-radius: 3px
+  color: $color-white
+  // background: $color-red
+  background: #439FE0
+  border: none
+  &:hover
+    background: lighten($color-red, 5%)
+    background: lighten(#439FE0, 5%)
+  &:active
+    @include transform( translate3d(0, 1px, 0) )

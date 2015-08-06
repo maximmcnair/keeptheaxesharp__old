@@ -11,7 +11,7 @@ import Router from 'react-router';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 /* eslint-enable no-unused-vars */
 
-import Review from './views/review.js';
+import Review from './review/review-view.js';
 import Cards from './views/cards.js';
 import Create from './views/create.js';
 import Landing from './views/landing.js';

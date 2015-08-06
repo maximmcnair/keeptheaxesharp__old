@@ -3,7 +3,7 @@
 import React from 'react';
 
 /* eslint-disable no-unused-vars */
-import ReviewTags from '../components/review-tags.js';
+import ReviewTags from './tags-component.js';
 /* eslint-enable no-unused-vars */
 
 /**
@@ -19,15 +19,14 @@ export default class Review extends React.Component {
   }
 
   /**
-   * @returns {XML}
-   */
-   render() {
-     return (
-       <div>
-         <h1>Review</h1>
-         <ReviewTags></ReviewTags>
+  * @returns {XML}
+  */
+  render() {
+    return (
+      <div>
+        <ReviewTags></ReviewTags>
       </div>
-     );
-   }
+    );
+  }
 
 }
