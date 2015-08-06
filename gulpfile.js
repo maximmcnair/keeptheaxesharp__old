@@ -34,7 +34,7 @@ gulp.task('browserify', function () {
  */
 var mocha = require('gulp-mocha');
 var babel = require('babel/register');
-gulp.task('js:test', function () {
+gulp.task('mocha', function () {
   return gulp.src('./test/testSpec.js', {read: false})
     .pipe(mocha({
       reporter: 'nyan',
@@ -72,7 +72,7 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'sass', 'browserify', 'js:test']);
+gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha']);
 
 gulp.task('compiled', ['default']);
 
