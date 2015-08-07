@@ -65,6 +65,8 @@ gulp.task('webserver', function () {
   gulp.src('public')
     .pipe(webserver({
       open: true,
+      port: 3600,
+      livereload: true,
       fallback: 'index.html'
     }));
 });
@@ -84,3 +86,5 @@ gulp.task('watch', function () {
     'test/**/*.*'
   ], ['default']);
 });
+
+gulp.task('dev', ['default', 'watch', 'webserver']);
