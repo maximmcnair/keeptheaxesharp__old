@@ -39,6 +39,4 @@ describe('ReviewView Component', () => {
     expect(global.element.getAttribute('class')).to.equal('review');
   });
 
-  
-
 });
