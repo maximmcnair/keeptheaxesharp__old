@@ -35,7 +35,11 @@ gulp.task('browserify', function () {
 var mocha = require('gulp-mocha');
 var babel = require('babel/register');
 gulp.task('mocha', function () {
-  return gulp.src('./test/testSpec.js', {read: false})
+  return gulp.src([
+    './test/testSpec.js'
+  , './test/*.js'
+  , './test/**/*.js'
+  ], {read: false})
     .pipe(mocha({
       reporter: 'nyan',
       compilers: {

@@ -3,7 +3,7 @@
 import React from 'react';
 
 /* eslint-disable no-unused-vars */
-import ReviewTags from './tags-component.js';
+// import ReviewTags from './tags-component.js';
 /* eslint-enable no-unused-vars */
 
 /**
@@ -23,10 +23,10 @@ export default class Review extends React.Component {
   */
   render() {
     return (
-      <div>
-        <ReviewTags></ReviewTags>
+      <div className="review">
       </div>
     );
+        // <ReviewTags></ReviewTags>
   }
 
 }
