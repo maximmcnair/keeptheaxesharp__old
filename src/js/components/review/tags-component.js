@@ -2,9 +2,7 @@
 
 import React from 'react';
 
-/* eslint-disable no-unused-vars */
 import TagComponent from './tag-component.js';
-/* eslint-enable no-unused-vars */
 
 /**
  * Review Tags Component
