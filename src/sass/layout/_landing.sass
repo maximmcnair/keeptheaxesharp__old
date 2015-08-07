@@ -1,0 +1,130 @@
+.landing-logo
+  background: url('/img/logo.png')
+  background-position: top right
+  background-repeat: no-repeat
+  width: 221px
+  height: 72px
+  display: block
+  margin: 0 auto 25px auto
+  @include clearfix
+  @include retina
+    background-image: url('/img/logo@2x.png')
+    background-size: contain
+
+.landing-logo-text
+  font-size: 16px
+  font-weight: 800
+  text-align: left
+  display: block
+  padding-top: 33px
+
+.landing-intro
+  display: block
+  margin: 25px auto 0px auto
+  width: 600px
+  text-align: center
+
+.landing-cards-overlay
+  position: absolute
+  bottom: 0px
+  left: 0px
+  right: 0px
+  height: 220px
+  z-index: 3
+
+.landing-cards-small
+  display: block
+  margin-top: 5px
+  font-family: $font-stack
+  font-weight: 600
+  font-size: 13px
+  color: #8C897F
+
+.landing-cards
+  position: absolute
+  bottom: 0px
+  left: 0px
+  right: 0px
+  overflow: hidden
+  width: 100%
+  .card .card-front-content
+    opacity: 1
+  .card-container
+    min-height: 210px
+    @include animation(none)
+  .card-second
+    @include transform( scale(1) translate3d(-100px, 30px, 0px) )
+    opacity: 0
+  .card-third
+    @include transform( scale(1) translate3d(-100px, 30px, 0px) )
+    opacity: 0
+  .card-fourth
+    opacity: 0
+  // .card-current
+  //   transform: scale(0.91) translateY(-15px)
+  //   z-index: 200
+  // .card-fifth
+  //   transform: scale(0.88) translateY(-20px)
+  //   opacity: 0.4
+  //   z-index: 100
+
+
+// animations
+.landing-logo
+  opacity: 0
+  @include animation(fadeIn .7s .5s)
+  @include animation-fill-mode(forwards)
+.landing-title
+  opacity: 0
+  @include animation(fadeIn .7s 1.2s)
+  @include animation-fill-mode(forwards)
+.landing-desc
+  opacity: 0
+  @include animation(fadeIn .5s 2s)
+  @include animation-fill-mode(forwards)
+.landing-auth,
+.landing-cards-small
+  opacity: 0
+  @include animation(fadeIn .5s 3.6s)
+  @include animation-fill-mode(forwards)
+
++keyframes(animationLandingCardCurrent)
+  0%
+    @include transform( scale(1) translate3d(0, 100px, 0) )
+    opacity: 0
+  100%
+    @include transform( scale(1) translate3d(0, 0, 0) )
+    opacity: 1
+
+.landing-cards .card-current
+  opacity: 0
+  @include animation(animationLandingCardCurrent .5s 2.4s)
+  @include animation-fill-mode(forwards)
+
+
++keyframes(animationLandingCardSecond)
+  0%
+    @include transform( scale(1) translate3d(-100px, 130px, 0px) )
+    opacity: 0
+  100%
+    @include transform( scale(1) translate3d(-100px, 30px, 0px) )
+    opacity: 1
+
+.landing-cards .card-second
+  opacity: 0
+  @include animation(animationLandingCardSecond .5s 3s)
+  @include animation-fill-mode(forwards)
+
+
++keyframes(animationLandingCardThird)
+  0%
+    @include transform( scale(1) translate3d(100px, 130px, 0px) )
+    opacity: 0
+  100%
+    @include transform( scale(1) translate3d(100px, 30px, 0px) )
+    opacity: 1
+
+.landing-cards .card-third
+  opacity: 0
+  @include animation(animationLandingCardThird .5s 3s)
+  @include animation-fill-mode(forwards)

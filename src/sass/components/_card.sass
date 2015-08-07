@@ -1,0 +1,242 @@
+.card-container,
+.card-front,
+.card-back
+  width: 272px
+  margin: 0 auto
+  @extend .u-clearfix
+
+@media screen and (min-width: 380px)
+  .card-container,
+  .card-front,
+  .card-back
+    width: 352px
+
+@media screen and (min-width: 480px)
+  .card-container,
+  .card-front,
+  .card-back
+    width: 432px
+
+@media screen and (min-width: 580px)
+  .card-container,
+  .card-front,
+  .card-back
+    width: 522px
+
+/* flip speed goes here */
+.card
+  // transition: 0.6s
+  @include transform-style( flat )
+  position: relative
+
+.card-front,
+.card-back
+  border-radius: 3px
+  min-height: 332px
+  display: block
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3),0 0 0 1px rgba(0, 0, 0, 0.08)
+  @include backface-visibility( hidden )
+  position: absolute
+  top: 0
+  left: 0
+  background: $color-white
+  overflow: hidden
+  @include transform-style( flat )
+  padding: 20px 20px 50px 20px
+  display: block
+
+.card-content-wrapper
+  min-height: 250px
+  width: 100%
+  display: table
+
+.card-content
+  display: table-cell
+  text-align: center
+  vertical-align: middle
+  font-weight: 600
+  font-size: 32px
+
+/* card-front pane, placed above back */
+.card-front
+  // z-index: 2
+  /* for firefox 31 */
+  @include transform( translate3d(0px, 0px, 0px) rotateY(0deg) )
+  cursor: pointer
+
+/* back, initially hidden pane */
+.card-back
+  @include transform( translate3d(0px, 0px, 0px) rotateY(-180deg) )
+
+.card textarea
+  width: 100%
+  border: 0px
+  height: 200px
+  font-size: 13px
+  color: #586E75
+  font-family: monospace
+  font-weight: 400
+  line-height: 18.8500003814697px
+
+.card-action,
+.card-btn-wrapper
+  position: absolute
+  bottom: 0px
+  left: 0px
+  right: 0px
+
+.question-showAnswer
+  margin-bottom: 20px
+  display: block
+
+.card i
+  margin-right: 7px
+  vertical-align: -1px
+  font-size: 16px
+
+.card-action-wrong,
+.card-action-right
+  width: 50%
+  display: inline-block
+  padding: 20px 15px
+  text-align: center
+  font-weight: 600
+
+.card-action-wrong
+  background: $color-danger
+  color: $color-white
+  &:hover
+    background: darken($color-danger, 5%)
+
+.card-action-right
+  background: $color-success
+  color: $color-white
+  &:hover
+    background: darken($color-success, 5%)
+
+.card-action-right,
+.card-action-wrong
+  position: relative
+  i
+    font-size: 29px
+    position: absolute
+    top: 15px
+    left: 50%
+    margin: 0px 0px 0px -15px
+
+.correct-text,
+.wrong-text
+  opacity: 1
+  @include transform( scale(2) )
+  @include transition( opacity .3s )
+
+.correct-icon,
+.wrong-icon
+  opacity: 0
+  @include transform( scale(2) )
+  @include transition( opacity .2s .3s, transform .3s .3s )
+
+.is-correct
+  .correct-icon
+    opacity: 1
+    @include transform( scale(1) )
+  .correct-text
+    opacity: 0
+
+.is-wrong
+  .wrong-icon
+    opacity: 1
+    @include transform( scale(1) )
+  .wrong-text
+    opacity: 0
+
+.card-flip--back
+  position: absolute
+  top: 15px
+  right: 17px
+
+.card-flip
+  margin-bottom: 20px
+  cursor: pointer
+
+.card-flip--cardNew
+  margin-right: 105px
+  margin-left: 11px
+
+.card-back-text
+  position: relative
+
+
+.card-textarea
+  color: $color-text-code
+  font-size: 13px
+  line-height: 21px
+  font-family: $code-stack
+  border: 0px
+  width: 100%
+  min-height: 226px
+  &:focus
+    box-shadow: none
+    outline: 0
+
+.card-language
+  margin-bottom: 25px
+  @include clearfix
+
+.card-language-text
+  width: 120px
+  float: left
+  line-height: 37px
+  font-size: 14px
+
+.Select-placeholder
+  font-size: 14px
+
+.Select
+  position: relative
+  float: right
+  width: 360px
+
+// .card-container,
+// .card-front,
+// .card-back
+//   width: 522px
+//   margin: 0 auto
+//   // @extend .u-clearfix
+//
+// .card-front,
+// .card-back
+//   border-radius: 3px
+//   min-height: 300px
+//   display: block
+//   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3),0 0 0 1px rgba(0, 0, 0, 0.08)
+//   @include backface-visibility( hidden )
+//   position: absolute
+//   top: 0
+//   left: 0
+//   background: #fff
+//   overflow: hidden
+//   // @include transform-style( preserve-3d )
+//
+// /* flip speed goes here */
+// .card
+//   transition: 0.6s
+//   @include transform-style( preserve-3d )
+//   position: relative
+//
+// /* card-front pane, placed above back */
+// .card-front
+//   // z-index: 2
+//   /* for firefox 31 */
+//   // @include transform( translate3d(0px, 0px, 0px) rotateY(0deg) )
+//   padding: 20px 30px 50px 30px
+//   cursor: pointer
+//
+// /* back, initially hidden pane */
+// .card-back
+//   // @include transform( translate3d(0px, 0px, 0px) rotateY(-180deg) )
+//   padding: 20px 30px 92px 30px
+//
+// /* flip the pane */
+// // .card.is--answered
+//   // @include transform( translate3d(0px, 0px, 0px) rotateY(-180deg) )

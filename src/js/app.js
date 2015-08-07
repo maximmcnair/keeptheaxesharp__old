@@ -14,7 +14,7 @@ import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 import Review from './review/review-view.js';
 import Cards from './views/cards.js';
 import Create from './views/create.js';
-import Landing from './views/landing.js';
+import Landing from './landing/landing-view.js';
 
 let App = React.createClass({
   render() {
