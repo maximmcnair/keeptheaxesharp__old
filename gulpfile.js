@@ -81,15 +81,15 @@ gulp.task('sass', function () {
 /*
  * Webserver
  */
-// var webserver = require('gulp-webserver');
+var webserver = require('gulp-webserver');
 gulp.task('webserver', function () {
-  // gulp.src('public')
-  //   .pipe(webserver({
-  //     open: true,
-  //     port: 3600,
-  //     livereload: true,
-  //     fallback: 'index.html'
-  //   }));
+  gulp.src('public')
+    .pipe(webserver({
+      open: true,
+      port: 3600,
+      livereload: true,
+      fallback: 'index.html'
+    }));
 });
 
 /*

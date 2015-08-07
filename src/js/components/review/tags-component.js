@@ -51,7 +51,7 @@ export default class ReviewTags extends React.Component {
           {this.state.tags.map(
             tag => {
               return (
-                <TagComponent tag={tag}></TagComponent>
+                <TagComponent tag={tag} key={tag.name}></TagComponent>
               );
             }
           )}
