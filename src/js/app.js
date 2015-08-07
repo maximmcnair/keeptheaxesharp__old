@@ -7,9 +7,7 @@
 
 import React from 'react';
 import Router from 'react-router';
-/* eslint-disable no-unused-vars */
-import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
-/* eslint-enable no-unused-vars */
+import { Link, Route, RouteHandler } from 'react-router';
 
 import Review from './components/review/review-view.js';
 import Landing from './components/landing/landing-view.js';

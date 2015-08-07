@@ -49,6 +49,23 @@ gulp.task('mocha', function () {
 });
 
 /*
+ * Javascript Linting
+ */
+var eslint = require('gulp-eslint');
+gulp.task('eslint', function () {
+  return gulp.src([
+      './test/*.js'
+    , './test/**/*.js'
+    , './src/js/*.js'
+    , './src/js/**/*.js'
+    , './src/js/**/**/*.js'
+    ])
+    .pipe(eslint())
+    .pipe(eslint.formatEach())
+    .pipe(eslint.failOnError());
+});
+
+/*
  * Sass processing
  */
 var sass = require('gulp-sass');
@@ -64,21 +81,21 @@ gulp.task('sass', function () {
 /*
  * Webserver
  */
-var webserver = require('gulp-webserver');
+// var webserver = require('gulp-webserver');
 gulp.task('webserver', function () {
-  gulp.src('public')
-    .pipe(webserver({
-      open: true,
-      port: 3600,
-      livereload: true,
-      fallback: 'index.html'
-    }));
+  // gulp.src('public')
+  //   .pipe(webserver({
+  //     open: true,
+  //     port: 3600,
+  //     livereload: true,
+  //     fallback: 'index.html'
+  //   }));
 });
 
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha']);
+gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 

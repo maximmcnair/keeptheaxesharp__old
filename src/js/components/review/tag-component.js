@@ -35,3 +35,9 @@ export default class ReviewTags extends React.Component {
     );
   }
 }
+
+ReviewTags.propTypes =
+  { tag: React.PropTypes.shape(
+    { name: React.PropTypes.object.isRequired
+    })
+  };

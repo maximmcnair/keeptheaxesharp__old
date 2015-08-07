@@ -9,9 +9,7 @@ import React from 'react/addons';
 import jsdom from 'jsdom';
 import cheerio from 'cheerio';
 
-/* eslint-disable no-unused-vars */
 import ReviewViewComponent from './../../src/js/components/review/review-view.js';
-/* eslint-enable no-unused-vars */
 
 // init jsdom
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
