@@ -35,11 +35,11 @@ gulp.task('browserify', function () {
 var mocha = require('gulp-mocha');
 var babel = require('babel/register');
 gulp.task('mocha', function () {
-  return gulp.src([
-    './test/testSpec.js'
-  , './test/*.js'
-  , './test/**/*.js'
-  ], {read: false})
+  return gulp.src(
+    [ './test/testSpec.js'
+    , './test/*.js'
+    , './test/**/*.js'
+    ], {read: false})
     .pipe(mocha({
       reporter: 'nyan',
       compilers: {
@@ -72,10 +72,10 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 gulp.task('sass', function () {
   return gulp.src('./src/sass/main.sass')
-  .pipe(sourcemaps.init())
-  .pipe(sass({indentedSyntax: true}))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./public/assets/css'));
+    .pipe(sourcemaps.init())
+    .pipe(sass({indentedSyntax: true}))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./public/assets/css'));
 });
 
 /*
