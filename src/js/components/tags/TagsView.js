@@ -2,9 +2,8 @@
 
 import React from 'react';
 
-import TagComponent from './tag-component.js';
-
 import CardService from './../../services/CardService.js';
+import CheckboxGroup from 'react-checkbox-group';
 
 /**
  * Review View
@@ -16,11 +15,11 @@ export default class Review extends React.Component {
    */
   constructor () {
     super();
-    this.state = {tags: []};
+    this.state = {tags: [], selected: [], url: '/review/'};
   }
 
   /**
-   * @desc assigns a baobab listener after component has been mounted
+   * @desc gets tags form CardService and sets them as state
    */
   componentDidMount () {
     CardService.getTags((error, tags) => {
@@ -33,8 +32,15 @@ export default class Review extends React.Component {
     });
   }
 
-  reviewCards () {
-    console.log(this);
+  /**
+   * @desc gets selected tags and goes to review
+   */
+  handleChange () {
+    // will return the currently selected checkbox values as an array, possibly empty
+    var selectedTags = this.refs.tagsGroup.getCheckedValues();
+    this.setState({
+      url: '/review/' + selectedTags.join('&')
+    });
   }
 
   /**
@@ -43,21 +49,29 @@ export default class Review extends React.Component {
   render() {
     return (
       <div>
-       <h2 className="u-textCenter">Pick tags to review</h2>
-       <section className="u-textCenter">
-         {this.state.tags.map(
-           tag => {
-             return (
-               <TagComponent tag={tag} key={tag.name}></TagComponent>
-             );
-           }
-         )}
-       </section>
-       <div className="u-textCenter">
-         <a className="btn" onClick={this.reviewCards.bind(this)}>Let do it</a>
-       </div>
+        <h2 className="u-textCenter">Pick tags to review</h2>
+        <section className="u-textCenter">
+          <CheckboxGroup
+            name="tags"
+            value={this.state.selected}
+            ref="tagsGroup"
+            onChange={this.handleChange.bind(this)}
+          >
+            {this.state.tags.map(
+              tag => {
+                return (
+                  <label>
+                    <input type="checkbox" value={tag}/>{tag}
+                  </label>
+                );
+              }
+            )}
+          </CheckboxGroup>
+        </section>
+        <div className="u-textCenter">
+          <a className="btn" href={this.state.url}>Let do it</a>
+        </div>
       </div>
     );
   }
-
 }
