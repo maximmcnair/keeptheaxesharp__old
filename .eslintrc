@@ -15,6 +15,7 @@
   ],
   "rules": {
     "curly": [2, "multi-line"],
+    "no-underscore-dangle": [0],
     "quotes": [2, "single", "avoid-escape"],
     "react/jsx-boolean-value": 1,
     "react/jsx-curly-spacing": 1,
