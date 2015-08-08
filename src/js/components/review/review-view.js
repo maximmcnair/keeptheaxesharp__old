@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ReviewTags from './tags-component.js';
+// import CardService from './../../services/CardService.js';
 
 /**
  * Review View
@@ -17,12 +17,17 @@ export default class Review extends React.Component {
   }
 
   /**
+   * @desc assigns a baobab listener after component has been mounted
+   */
+  componentDidMount () {
+  }
+
+  /**
   * @returns {XML}
   */
   render() {
     return (
       <div className="review">
-        <ReviewTags></ReviewTags>
       </div>
     );
   }
