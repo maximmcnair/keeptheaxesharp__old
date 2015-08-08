@@ -33,7 +33,7 @@ describe('ReviewView Component', () => {
     global.$ = cheerio.load(String(global.element.outerHTML));
   });
 
-  it('Expect to have the given basket review', () => {
+  it('Expect to have the given `review` review', () => {
     expect(global.element.getAttribute('class')).to.equal('review');
   });
 
