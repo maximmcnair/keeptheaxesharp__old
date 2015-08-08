@@ -1,33 +1,9 @@
 'use strict';
 
-let cards =
-  { front: ''
-  , back: ''
-  , tags: []
-  };
+import cards from './../fixtures/cards.js';
+import tags from './../fixtures/tags.js';
 
-let tags =
-  [ { name: 'Go'
-    , checked: false
-    }
-  , { name: 'Angular'
-    , checked: false
-    }
-  , { name: 'Node.js'
-    , checked: false
-    }
-  , { name: 'Javscript'
-    , checked: false
-    }
-  , { name: 'React'
-    , checked: false
-    }
-  , { name: 'ES2015'
-    , checked: false
-    }
-  ];
-
-let cardService =
+let CardService =
   { getAll: function (cb) {
       cb(null, cards);
     }
@@ -36,4 +12,4 @@ let cardService =
     }
   };
 
-export {cardService};
+export default CardService;

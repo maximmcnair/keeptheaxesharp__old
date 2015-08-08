@@ -4,7 +4,7 @@ import React from 'react';
 
 import TagComponent from './tag-component.js';
 
-import CardService from '../../services/CardService.js';
+import CardService from './../../services/CardService.js';
 
 /**
  * Review Tags Component
@@ -25,7 +25,10 @@ export default class ReviewTags extends React.Component {
    * @desc assigns a baobab listener after component has been mounted
    */
   componentDidMount () {
-    CardService.getTags((tags) => {
+    CardService.getTags((error, tags) => {
+      // Log error
+      if(error) console.error(error);
+      // Set tags to state
       this.setState({
         tags: tags
       });

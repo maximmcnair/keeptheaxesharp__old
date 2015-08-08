@@ -42,8 +42,6 @@ let routes = (
   </Route>
 );
 
-/* eslint-disable no-unused-vars */
 Router.run(routes, function (Handler) {
-/* eslint-enable no-unused-vars */
   React.render(<Handler/>, document.body);
 });
