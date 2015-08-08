@@ -60,10 +60,9 @@ export default class Tags extends React.Component {
           >
             {this.state.tags.map(
               tag => {
-                // var tagClass = 'tagCheckbox';
-                // if(this.state.selected.indexOf(tag) !== -1){
-                //   tagClass += ' is--checked';
-                // }
+                if(this.state.selected.indexOf(tag) !== -1){
+                  console.log('active')
+                }
                 return (
                   <label key={tag}>
                     <input type="checkbox" value={tag}/>
