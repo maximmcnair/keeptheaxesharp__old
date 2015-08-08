@@ -20,7 +20,7 @@ export default class Review extends React.Component {
    * @desc assigns a baobab listener after component has been mounted
    */
   componentDidMount () {
-    console.log('review', this.props.tags.split('&') );
+    // console.log('review', this.props.tags.split('&') );
   }
 
   /**

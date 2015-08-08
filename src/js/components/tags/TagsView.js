@@ -6,10 +6,10 @@ import CardService from './../../services/CardService.js';
 import CheckboxGroup from 'react-checkbox-group';
 
 /**
- * Review View
+ * Tags View
  * @extends {React.Component}
  */
-export default class Review extends React.Component {
+export default class Tags extends React.Component {
   /**
    * @desc sets initial state
    */
@@ -40,6 +40,7 @@ export default class Review extends React.Component {
     var selectedTags = this.refs.tagsGroup.getCheckedValues();
     this.setState({
       url: '/review/' + selectedTags.join('&')
+    , selected: selectedTags
     });
   }
 
@@ -59,12 +60,17 @@ export default class Review extends React.Component {
           >
             {this.state.tags.map(
               tag => {
+                // var tagClass = 'tagCheckbox';
+                // if(this.state.selected.indexOf(tag) !== -1){
+                //   tagClass += ' is--checked';
+                // }
                 return (
-                  <label>
-                    <input type="checkbox" value={tag}/>{tag}
+                  <label key={tag}>
+                    <input type="checkbox" value={tag}/>
+                    <span>{tag}</span>
                   </label>
                 );
-              }
+              }.bind(this)
             )}
           </CheckboxGroup>
         </section>

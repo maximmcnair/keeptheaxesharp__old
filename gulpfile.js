@@ -5,6 +5,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 
 /*
  * Copy index file
@@ -26,6 +27,7 @@ gulp.task('browserify', function () {
     .pipe(browserify({
       transform: ['babelify']
     }))
+    .on('error', gutil.log)
     .pipe(gulp.dest('public/assets/js/'));
 });
 
