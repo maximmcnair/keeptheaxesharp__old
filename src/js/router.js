@@ -6,7 +6,7 @@ import Review from './components/review/ReviewView.js';
 import Tags from './components/tags/TagsView.js';
 import Landing from './components/landing/landing-view.js';
 import Create from './components/create/CreateCard.js';
-// import Cards from './components/cards/cards-view.js';
+import CardList from './components/cards/CardList.js';
 
 // Applicaton code
 var App = React.createClass({
@@ -16,6 +16,7 @@ var App = React.createClass({
     , '/tags': 'tags'
     , '/review/:tags': 'review'
     , '/create': 'create'
+    , '/cards': 'cards'
     }
   , landing: function(){
       return (
@@ -35,6 +36,11 @@ var App = React.createClass({
   , create: function(){
       return (
         <Create></Create>
+      );
+    }
+  , cards: function(){
+      return (
+        <CardList></CardList>
       );
     }
   , notFound: function() {
@@ -67,9 +73,11 @@ var App = React.createClass({
               </div>
             </header>
           </div>
-          <div className="body">
-            {this.renderCurrentRoute()}
-          </div>
+          <section className="content">
+            <div className="body">
+              {this.renderCurrentRoute()}
+            </div>
+          </section>
         </div>
       );
     }
