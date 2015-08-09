@@ -5,8 +5,8 @@ var RouterMixin = require('react-mini-router').RouterMixin;
 import Review from './components/review/ReviewView.js';
 import Tags from './components/tags/TagsView.js';
 import Landing from './components/landing/landing-view.js';
+import Create from './components/create/create-view.js';
 // import Cards from './components/cards/cards-view.js';
-// import Create from './components/create/create-view.js';
 
 // Applicaton code
 var App = React.createClass({
@@ -15,6 +15,7 @@ var App = React.createClass({
       '/': 'landing'
     , '/tags': 'tags'
     , '/review/:tags': 'review'
+    , '/create': 'create'
     }
   , landing: function(){
       return (
@@ -31,8 +32,13 @@ var App = React.createClass({
         <Review tags={tags}></Review>
       );
     }
+  , create: function(){
+      return (
+        <Create></Create>
+      );
+    }
   , notFound: function() {
-      return this.discover();
+      return this.landing();
     }
   , render: function() {
       return (
