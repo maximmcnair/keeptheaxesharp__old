@@ -22,6 +22,10 @@ export default class Review extends React.Component {
       , finished: false
       , scoreCorrect: 0
       , scoreWrong: 0
+      // , currentCard: 4
+      // , finished: true
+      // , scoreCorrect: 14
+      // , scoreWrong: 5
       };
     // Bind this to functions
     this.scheduleNextViewing = this.scheduleNextViewing.bind(this);
@@ -107,20 +111,20 @@ export default class Review extends React.Component {
     // If finished then render message
     if(this.state.finished){
       cardNodes.push(
-        <div className="cardEmpty">
+        <div className="cardScore">
 
-          <div className="cardEmpty-stats">
-            <div className="cardEmpty-stat cardEmpty-stat-correct">
-              <h4 className="cardEmpty-stat-title">Correct</h4>
-              <h4 className="cardEmpty-stat-score">{this.state.scoreCorrect}</h4>
+          <div className="cardScore-stats">
+            <div className="cardScore-stat cardScore-stat-correct">
+              <h4 className="cardScore-stat-title">Correct</h4>
+              <h4 className="cardScore-stat-score">{this.state.scoreCorrect}</h4>
             </div>
-            <div className="cardEmpty-stat cardEmpty-stat-wrong">
-              <h4 className="cardEmpty-stat-title">Wrong</h4>
-              <h4 className="cardEmpty-stat-score">{this.state.scoreWrong}</h4>
+            <div className="cardScore-stat cardScore-stat-wrong">
+              <h4 className="cardScore-stat-title">Wrong</h4>
+              <h4 className="cardScore-stat-score">{this.state.scoreWrong}</h4>
             </div>
           </div>
 
-          <a href="/tags" className="btn btn-icon">Review more cards</a>
+          <a href="/tags" className="cardScore-reviewMore">Review more cards</a>
         </div>
       );
     }
