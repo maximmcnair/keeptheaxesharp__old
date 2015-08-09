@@ -30,3 +30,34 @@ textarea
 
 :-ms-input-placeholder
   color: #BFC1CA
+
+
+
+//------------------------------------------------------------------------------
+// Checkbox Styling
+//------------------------------------------------------------------------------
+.checkbox
+  display: none
+
+.checkbox + .checkbox-label
+  margin: 0px 5px
+  background: grey
+  font-weight: 600
+  font-size: 16px
+  text-decoration: none
+  text-align: center
+  padding: 14px 48px 15px 48px
+  margin-top: 20px
+  display: inline-block
+  cursor: pointer
+  border-radius: 3px
+  color: $color-white
+  border: none
+  @include user-select(none)
+  &:hover
+    background: lighten(#439FE0, 5%)
+  &:active
+    @include transform( translate3d(0, 1px, 0) )
+
+.checkbox:checked + .checkbox-label
+  background: #439FE0

@@ -64,10 +64,12 @@ export default class Tags extends React.Component {
                   console.log('active');
                 }
                 return (
-                  <label key={tag}>
-                    <input type="checkbox" value={tag}/>
-                    <span>{tag}</span>
-                  </label>
+                  <span key={tag}>
+                    <input type="checkbox" value={tag} id={tag} className="checkbox"/>
+                    <label htmlFor={tag} className="checkbox-label">
+                      <span>{tag}</span>
+                    </label>
+                  </span>
                 );
               }.bind(this)
             )}
