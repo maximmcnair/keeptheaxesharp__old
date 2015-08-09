@@ -13,3 +13,10 @@ React.render(
   router()
 , document.body
 );
+
+// Detect browser and add class name to body
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+if (isChrome) document.getElementsByTagName('body')[0].className += ' browser-chrome';
+if (isSafari) document.getElementsByTagName('body')[0].className += ' browser-safari';
