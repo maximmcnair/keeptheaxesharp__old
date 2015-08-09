@@ -10,7 +10,7 @@ import React from 'react';
 var router = React.createFactory(require('./router.js'));
 
 React.render(
-  router()
+  router({history: true})
 , document.body
 );
 
