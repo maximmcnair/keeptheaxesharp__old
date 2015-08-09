@@ -5,7 +5,7 @@ var RouterMixin = require('react-mini-router').RouterMixin;
 import Review from './components/review/ReviewView.js';
 import Tags from './components/tags/TagsView.js';
 import Landing from './components/landing/landing-view.js';
-import Create from './components/create/create-view.js';
+import Create from './components/create/CreateCard.js';
 // import Cards from './components/cards/cards-view.js';
 
 // Applicaton code
