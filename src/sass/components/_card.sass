@@ -48,14 +48,20 @@
 .card-content-wrapper
   min-height: 250px
   width: 100%
-  display: table
+  // display: table
 
 .card-content
-  display: table-cell
   text-align: center
-  vertical-align: middle
   font-weight: 600
   font-size: 32px
+  vertical-align: top
+  // Below is for centering content on card
+  // display: table-cell
+  // vertical-align: middle
+
+// remove margin-top of first pre block on card
+.card-content pre:first-of-type
+  margin-top: 0px
 
 /* card-front pane, placed above back */
 .card-front

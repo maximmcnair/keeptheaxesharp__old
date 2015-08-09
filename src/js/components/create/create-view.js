@@ -2,9 +2,8 @@
 
 import React from 'react';
 var CodeMirror = require('react-code-mirror');
-require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/gfm/gfm');
-
+require('codemirror/mode/javascript/javascript');
 
 /**
  * Create View
@@ -18,7 +17,7 @@ export default class Create extends React.Component {
     super();
     // Set initial state
     this.state =
-      { front: "GitHub Flavored Markdown\n========================\n\nEverything from markdown plus GFM features:\n\n## URL autolinking\n\nUnderscores_are_allowed_between_words.\n\n## Strikethrough text\n\nGFM adds syntax to strikethrough text, which is missing from standard Markdown.\n\n~~Mistaken text.~~\n~~**works with other fomatting**~~\n\n~~spans across\nlines~~\n\n## Fenced code blocks (and syntax highlighting)\n\n```javascript\nfor (var i = 0; i &lt; items.length; i++) {\n    console.log(items[i], i); // log them\n}\n```"
+      { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }```'
       , back: ''
       , tab: 'front'
       };
@@ -26,6 +25,10 @@ export default class Create extends React.Component {
 
   onFrontChange(e) {
     this.setState({front: e.target.value});
+  }
+
+  onBackChange(e) {
+    this.setState({back: e.target.value});
   }
 
   /**
@@ -39,6 +42,12 @@ export default class Create extends React.Component {
           mode='gfm'
           theme='default'
           onChange={this.onFrontChange.bind(this)}
+        ></CodeMirror>
+        <CodeMirror
+          value={this.state.back}
+          mode='gfm'
+          theme='default'
+          onChange={this.onBackChange.bind(this)}
         ></CodeMirror>
       </div>
     );

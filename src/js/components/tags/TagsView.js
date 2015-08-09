@@ -61,7 +61,7 @@ export default class Tags extends React.Component {
             {this.state.tags.map(
               tag => {
                 if(this.state.selected.indexOf(tag) !== -1){
-                  console.log('active')
+                  console.log('active');
                 }
                 return (
                   <label key={tag}>
