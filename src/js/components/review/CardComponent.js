@@ -39,6 +39,10 @@ class Card extends React.Component {
     super();
   }
 
+  flipCard () {
+    this.props.flipCard();
+  }
+
   /**
   * @returns {XML}
   */
@@ -47,6 +51,7 @@ class Card extends React.Component {
     var cardClass = 'card'
       , index = this.props.cardIndex - this.props.currentCard;
 
+    // Generate class for correct card position
     switch(true){
       case (index < 0):
         cardClass = 'card card-done';
@@ -68,12 +73,22 @@ class Card extends React.Component {
         break;
     }
 
+    // Generate class to flip card
+    if(this.props.card.answered){
+      cardClass += ' is--answered';
+    }
+
+    // Generate card correct/wrong class
+    var cardActionClass = 'card-action';
+    if(this.props.card.correct === true) cardActionClass += ' is-correct';
+    if(this.props.card.correct === false) cardActionClass += ' is-wrong';
+
     var frontHTML = {__html: md.render(this.props.card.front) };
     var backHTML = {__html: md.render(this.props.card.back)};
 
     return (
       <div className={cardClass}>
-        <div className="card-front" onClick={this.flipCard}>
+        <div className="card-front" onClick={this.flipCard.bind(this)}>
           <div className="card-content-wrapper">
             <div className="card-content" dangerouslySetInnerHTML={frontHTML}></div>
           </div>
@@ -88,11 +103,11 @@ class Card extends React.Component {
           <div className="card-content-wrapper">
             <div className="card-content" dangerouslySetInnerHTML={backHTML}></div>
           </div>
-          <small className="card-flip card-flip--back" onClick={this.flipCard}>
+          <small className="card-flip card-flip--back" onClick={this.flipCard.bind(this)}>
             <i className="fa fa-refresh"></i>
             flip card
           </small>
-          <footer>
+          <footer className={cardActionClass}>
             <div className="u-textCenter">
               <h5>How did you do?</h5>
             </div>
@@ -118,6 +133,7 @@ Card.propTypes = {
   cardIndex: React.PropTypes.number
 , currentCard: React.PropTypes.number
 , card: React.PropTypes.object
+, flipCard: React.PropTypes.func
 };
 
 export default Card;

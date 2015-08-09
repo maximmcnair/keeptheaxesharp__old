@@ -15,7 +15,13 @@ export default class Review extends React.Component {
    */
   constructor () {
     super();
-    this.state = {cards: [], currentCard: 0};
+    this.state =
+      { cards: []
+      , currentCard: 0
+      , finished: false
+      , scoreCorrect: 0
+      , scoreWrong: 0
+      };
   }
 
   /**
@@ -23,14 +29,33 @@ export default class Review extends React.Component {
    */
   componentDidMount () {
     // console.log('review', this.props.tags.split('&') );
-    CardService.getAll((error, cards) => {
+    CardService.getAll((error, response) => {
       // Log error
-      if(error) console.error(error);
-      // Set cards to state
-      this.setState({
-        cards: cards
-      });
+      if(error){
+        console.error(error);
+      }else{
+        // Loop through cards and add answer variable
+        var cards = response.map(function(card){
+          card.answeredCorrect = null;
+          card.answered = false;
+          return card;
+        });
+
+        // Set cards to state
+        this.setState({
+          cards: cards
+        });
+      }
     });
+  }
+
+  flipCard() {
+    // Copy state.cards to avoid mutating state
+    var cardArray = this.state.cards;
+    // Change card
+    cardArray[this.state.currentCard].answered = !cardArray[this.state.currentCard].answered;
+    // Update state
+    this.setState({cards: cardArray});
   }
 
   /**
@@ -43,11 +68,12 @@ export default class Review extends React.Component {
           card={card}
           key={card._id}
           cardIndex={index}
+          flipCard={this.flipCard.bind(this)}
           currentCard={this.state.currentCard}
         ></CardComponent>
       );
     }.bind(this));
-    console.log(this.state.cards, cardNodes);
+    // console.log(this.state.cards, cardNodes);
     return (
       <div className="card-container">
         {cardNodes}
