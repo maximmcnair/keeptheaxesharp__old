@@ -41,9 +41,35 @@ var App = React.createClass({
       return this.landing();
     }
   , render: function() {
+      var homeLinkClass = 'header-link'
+        , createLinkClass = 'header-link';
+
+      switch(true){
+        case this.state.path === '/':
+          homeLinkClass += ' is-active';
+          break;
+        case this.state.path === '/new':
+          createLinkClass += ' is-active';
+          break;
+      }
+
       return (
-        <div className="body">
-          {this.renderCurrentRoute()}
+        <div>
+          <div className="header-wrapper">
+            <header className="header">
+              <div className="header-content">
+                <a href="/" className="header-title">Keep Your Axe Sharp</a>
+                <nav className="header-nav">
+                  <a href="/tags" className="header-link">Review</a>
+                  <a href="/cards" className="header-link">Cards</a>
+                  <a href="/logout" className="header-link">Logout</a>
+                </nav>
+              </div>
+            </header>
+          </div>
+          <div className="body">
+            {this.renderCurrentRoute()}
+          </div>
         </div>
       );
     }
