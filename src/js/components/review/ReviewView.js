@@ -89,6 +89,7 @@ export default class Review extends React.Component {
   * @returns {XML}
   */
   render() {
+    // Generate card nodes from cards in state
     var cardNodes = this.state.cards.map(function(card, index){
       return (
         <CardComponent
@@ -101,7 +102,28 @@ export default class Review extends React.Component {
         ></CardComponent>
       );
     }.bind(this));
-    // console.log(this.state.cards, cardNodes);
+
+    // If finished then render message
+    if(this.state.finished){
+      cardNodes.push(
+        <div className="cardEmpty">
+
+          <div className="cardEmpty-stats">
+            <div className="cardEmpty-stat cardEmpty-stat-correct">
+              <h4 className="cardEmpty-stat-title">Correct</h4>
+              <h4 className="cardEmpty-stat-score">{this.state.scoreCorrect}</h4>
+            </div>
+            <div className="cardEmpty-stat cardEmpty-stat-wrong">
+              <h4 className="cardEmpty-stat-title">Wrong</h4>
+              <h4 className="cardEmpty-stat-score">{this.state.scoreWrong}</h4>
+            </div>
+          </div>
+
+          <a href="/tags" className="btn btn-icon">Review more cards</a>
+        </div>
+      );
+    }
+
     return (
       <div className="card-container">
         {cardNodes}
