@@ -33,6 +33,7 @@ export default class Review extends React.Component {
   componentDidMount () {
     // console.log('review', this.props.tags.split('&') );
     CardService.getAll((error, response) => {
+      console.log('cards', response)
       // Log error
       if(error){
         console.error(error);

@@ -42,7 +42,9 @@ This repo follows [Semantic Versioning](http://semver.org/).
 - [ ] As a user, I want to tag a card.
 - [ ] As a user, I want to use markup for writing cards.
 - [ ] As a user, I want to enter the question side of a card.
+- [ ] As a user, I want the app to validated my question.
 - [ ] As a user, I want to enter the answer side of a card.
+- [ ] As a user, I want the app to answer my question.
 - [ ] As a user, I want to add tags to a card.
 
 ### List

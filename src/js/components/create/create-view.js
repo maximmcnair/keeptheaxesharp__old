@@ -1,9 +1,15 @@
 'use strict';
 
 import React from 'react';
+
+// Codemirror dependencies
 var CodeMirror = require('react-code-mirror');
 require('codemirror/mode/gfm/gfm');
 require('codemirror/mode/javascript/javascript');
+
+//
+import CardService from './../../services/CardService.js';
+var navigate = require('react-mini-router').navigate;
 
 /**
  * Create View
@@ -21,6 +27,10 @@ export default class Create extends React.Component {
       , back: ''
       , tab: 'front'
       };
+    // Bind this to functions
+    this.onFrontChange = this.onFrontChange.bind(this);
+    this.onBackChange = this.onBackChange.bind(this);
+    this.createCard = this.createCard.bind(this);
   }
 
   onFrontChange(e) {
@@ -29,6 +39,19 @@ export default class Create extends React.Component {
 
   onBackChange(e) {
     this.setState({back: e.target.value});
+  }
+
+  createCard() {
+    var newCard =
+      { front: this.state.front
+      , back: this.state.back
+      };
+    CardService.create(newCard, function(error, card){
+      console.log(error, card);
+      if(!error){
+        navigate('/tags');
+      }
+    });
   }
 
   /**
@@ -41,14 +64,15 @@ export default class Create extends React.Component {
           value={this.state.front}
           mode='gfm'
           theme='default'
-          onChange={this.onFrontChange.bind(this)}
+          onChange={this.onFrontChange}
         ></CodeMirror>
         <CodeMirror
           value={this.state.back}
           mode='gfm'
           theme='default'
-          onChange={this.onBackChange.bind(this)}
+          onChange={this.onBackChange}
         ></CodeMirror>
+        <a onClick={this.createCard} className="btn btn-icon">Create card</a>
       </div>
     );
   }

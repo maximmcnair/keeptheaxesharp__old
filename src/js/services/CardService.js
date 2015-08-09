@@ -10,6 +10,10 @@ let CardService =
   , getTags: function (cb) {
       cb(null, tags);
     }
+  , create: function (data, cb) {
+      cards.push(data);
+      cb(null, {});
+    }
   };
 
 export default CardService;
