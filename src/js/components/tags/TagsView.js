@@ -74,7 +74,7 @@ export default class Tags extends React.Component {
           </CheckboxGroup>
         </section>
         <div className="u-textCenter">
-          <a className="btn" href={this.state.url}>Let do it</a>
+          <a className="btn" href={this.state.url}>Let's do it</a>
         </div>
       </div>
     );

@@ -37,10 +37,21 @@ class Card extends React.Component {
    */
   constructor () {
     super();
+    // Bind this to functions
+    this.flipCard = this.flipCard.bind(this);
+    this.markCorrect = this.markCorrect.bind(this);
+    this.markWrong = this.markWrong.bind(this);
   }
 
   flipCard () {
     this.props.flipCard();
+  }
+
+  markCorrect () {
+    this.props.markCardCorrect(true);
+  }
+  markWrong () {
+    this.props.markCardCorrect(false);
   }
 
   /**
@@ -80,15 +91,16 @@ class Card extends React.Component {
 
     // Generate card correct/wrong class
     var cardActionClass = 'card-action';
-    if(this.props.card.correct === true) cardActionClass += ' is-correct';
-    if(this.props.card.correct === false) cardActionClass += ' is-wrong';
-
+    console.log('this.props.card.answeredCorrect', this.props.card.answeredCorrect);
+    if(this.props.card.answeredCorrect === true) cardActionClass += ' is-correct';
+    if(this.props.card.answeredCorrect === false) cardActionClass += ' is-wrong';
+    console.log('cardActionClass', cardActionClass);
     var frontHTML = {__html: md.render(this.props.card.front) };
     var backHTML = {__html: md.render(this.props.card.back)};
 
     return (
       <div className={cardClass}>
-        <div className="card-front" onClick={this.flipCard.bind(this)}>
+        <div className="card-front" onClick={this.flipCard}>
           <div className="card-content-wrapper">
             <div className="card-content" dangerouslySetInnerHTML={frontHTML}></div>
           </div>
@@ -103,7 +115,7 @@ class Card extends React.Component {
           <div className="card-content-wrapper">
             <div className="card-content" dangerouslySetInnerHTML={backHTML}></div>
           </div>
-          <small className="card-flip card-flip--back" onClick={this.flipCard.bind(this)}>
+          <small className="card-flip card-flip--back" onClick={this.flipCard}>
             <i className="fa fa-refresh"></i>
             flip card
           </small>
@@ -125,7 +137,6 @@ class Card extends React.Component {
         </div>
       </div>
     );
-    //  className={cardActionClass}
   }
 }
 
@@ -134,6 +145,7 @@ Card.propTypes = {
 , currentCard: React.PropTypes.number
 , card: React.PropTypes.object
 , flipCard: React.PropTypes.func
+, markCardCorrect: React.PropTypes.func
 };
 
 export default Card;

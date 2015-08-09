@@ -97,7 +97,8 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha', 'eslint']);
+gulp.task('default', ['copy_index', 'sass', 'browserify']);
+// gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 

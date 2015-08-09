@@ -15,6 +15,7 @@ export default class Review extends React.Component {
    */
   constructor () {
     super();
+    // Set state
     this.state =
       { cards: []
       , currentCard: 0
@@ -22,6 +23,8 @@ export default class Review extends React.Component {
       , scoreCorrect: 0
       , scoreWrong: 0
       };
+    // Bind this to functions
+    this.scheduleNextViewing = this.scheduleNextViewing.bind(this);
   }
 
   /**
@@ -49,6 +52,13 @@ export default class Review extends React.Component {
     });
   }
 
+  showNextCard() {
+    // Increase currentCard
+    this.setState({currentCard: this.state.currentCard + 1});
+    // Check if there is another card
+    if(this.state.cards.length === this.state.currentCard) this.setState({finished: true});
+  }
+
   flipCard() {
     // Copy state.cards to avoid mutating state
     var cardArray = this.state.cards;
@@ -56,6 +66,23 @@ export default class Review extends React.Component {
     cardArray[this.state.currentCard].answered = !cardArray[this.state.currentCard].answered;
     // Update state
     this.setState({cards: cardArray});
+  }
+
+  scheduleNextViewing(answeredCorrect) {
+    // Copy state.cards to avoid mutating state
+    var cardArray = this.state.cards;
+    // Make correct
+    cardArray[this.state.currentCard].answeredCorrect = answeredCorrect;
+    // Update state
+    this.setState({
+      scoreCorrect: answeredCorrect ? this.state.scoreCorrect + 1 : this.state.scoreCorrect
+    , scoreWrong: !answeredCorrect ? this.state.scoreWrong + 1 : this.state.scoreWrong
+    , cards: cardArray
+    });
+    // Set timeout for CSS animations
+    setTimeout(function(){
+      this.showNextCard();
+    }.bind(this), 800);
   }
 
   /**
@@ -70,6 +97,7 @@ export default class Review extends React.Component {
           cardIndex={index}
           flipCard={this.flipCard.bind(this)}
           currentCard={this.state.currentCard}
+          markCardCorrect={this.scheduleNextViewing}
         ></CardComponent>
       );
     }.bind(this));
