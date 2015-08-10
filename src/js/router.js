@@ -47,15 +47,18 @@ var App = React.createClass({
       return this.landing();
     }
   , render: function() {
-      var homeLinkClass = 'header-link'
-        , createLinkClass = 'header-link';
+      var tagsLinkClass = 'header-link'
+        , cardsLinkClass = 'header-link';
 
       switch(true){
-        case this.state.path === '/':
-          homeLinkClass += ' is-active';
+        case this.state.path === '/tags':
+          tagsLinkClass += ' is-active';
           break;
-        case this.state.path === '/new':
-          createLinkClass += ' is-active';
+        case this.state.path.indexOf('/review') !== -1:
+          tagsLinkClass += ' is-active';
+          break;
+        case this.state.path === '/cards':
+          cardsLinkClass += ' is-active';
           break;
       }
 
@@ -69,8 +72,8 @@ var App = React.createClass({
                 <div className="header-content">
                   <a href="/" className="header-title">Keep The Axe Sharp</a>
                   <nav className="header-nav">
-                    <a href="/tags" className="header-link">Review</a>
-                    <a href="/cards" className="header-link">Cards</a>
+                    <a href="/tags" className={tagsLinkClass}>Review</a>
+                    <a href="/cards" className={cardsLinkClass}>Cards</a>
                     <a href="/logout" className="header-link">Logout</a>
                   </nav>
                 </div>

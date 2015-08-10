@@ -6,10 +6,21 @@ import React from 'react';
 var CodeMirror = require('react-code-mirror');
 require('codemirror/mode/gfm/gfm');
 require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/go/go');
+require('codemirror/mode/ruby/ruby');
+require('codemirror/mode/clike/clike');
+require('codemirror/mode/coffeescript/coffeescript');
+require('codemirror/mode/php/php');
+require('codemirror/mode/python/python');
+require('codemirror/mode/sql/sql');
+require('codemirror/mode/clojure/clojure');
+require('codemirror/mode/perl/perl');
 
 //
 import CardService from './../../services/CardService.js';
 var navigate = require('react-mini-router').navigate;
+
+import TagsInput from './CardTags';
 
 /**
  * CreateCard Component
@@ -81,6 +92,7 @@ class CreateCard extends React.Component {
                 theme='default'
                 onChange={this.onFrontChange}
               ></CodeMirror>
+              <TagsInput></TagsInput>
             </div>
             <div className="u-textCenter card-btn-wrapper">
               <small className="question-showAnswer card-flip" onClick={this.flipCard}>
