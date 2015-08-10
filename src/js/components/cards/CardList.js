@@ -38,21 +38,25 @@ export default class CardList extends React.Component {
   /**
    * @returns {XML}
    */
-   render() {
-     // Generate card nodes from cards in state
-     var cardNodes = this.state.cards.map(function(card){
-       return (
-         <CardPreview
-           card={card}
-         ></CardPreview>
-       );
-     }.bind(this));
+  render() {
+    // Generate card nodes from cards in state
+    var cardNodes = this.state.cards.map(function(card){
+      return (
+        <CardPreview
+          card={card}
+        ></CardPreview>
+      );
+    });
 
-     return (
-       <div className="cardPreviewList">
-        {cardNodes}
-       </div>
-     );
-   }
+    return (
+      <section>
+        <h2>Cards</h2>
+        <a className="" href="/create"><i className="fa fa-plus"></i>Add Card</a>
+        <div className="cardPreviewList">
+          {cardNodes}
+        </div>
+      </section>
+    );
+  }
 
 }

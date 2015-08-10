@@ -47,9 +47,9 @@ class CreateCard extends React.Component {
       { front: this.state.front
       , back: this.state.back
       };
-    CardService.create(newCard, function(error, card){
+    CardService.create(newCard, function(error){
       if(!error){
-        navigate('/tags');
+        navigate('/cards');
       }
     });
   }
