@@ -111,4 +111,4 @@ gulp.task('watch', function () {
   ], ['default']);
 });
 
-gulp.task('dev', ['default', 'watch', 'webserver']);
+gulp.task('dev', ['default', 'watch']);
