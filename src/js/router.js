@@ -59,27 +59,32 @@ var App = React.createClass({
           break;
       }
 
-      return (
-        <div>
-          <div className="header-wrapper">
-            <header className="header">
-              <div className="header-content">
-                <a href="/" className="header-title">Keep Your Axe Sharp</a>
-                <nav className="header-nav">
-                  <a href="/tags" className="header-link">Review</a>
-                  <a href="/cards" className="header-link">Cards</a>
-                  <a href="/logout" className="header-link">Logout</a>
-                </nav>
-              </div>
-            </header>
-          </div>
-          <section className="content">
-            <div className="body">
-              {this.renderCurrentRoute()}
+      if(this.state.path === '/'){
+        return this.landing();
+      }else{
+        return (
+          <div>
+            <div className="header-wrapper">
+              <header className="header">
+                <div className="header-content">
+                  <a href="/" className="header-title">Keep Your Axe Sharp</a>
+                  <nav className="header-nav">
+                    <a href="/tags" className="header-link">Review</a>
+                    <a href="/cards" className="header-link">Cards</a>
+                    <a href="/logout" className="header-link">Logout</a>
+                  </nav>
+                </div>
+              </header>
             </div>
-          </section>
-        </div>
-      );
+            <section className="content">
+              <div className="body">
+                {this.renderCurrentRoute()}
+              </div>
+            </section>
+          </div>
+        );
+      }
+
     }
   });
 
