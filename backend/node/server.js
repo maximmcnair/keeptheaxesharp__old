@@ -1,6 +1,7 @@
 var express = require('express')
   , passport = require('passport')
-  , bunyan = require('bunyan');
+  , bunyan = require('bunyan')
+  , path = require('path');
 
 // Load configurations
 var properties = require('./properties')();
@@ -20,6 +21,11 @@ var connection = mongoose.createConnection(properties.db, properties.dbOptions)
 
 // Once connected, set everything up
 connection.once('open', function connectionOpen() {
+  // Bootstrap models
+  [ 'card'
+  ].forEach(function (model) {
+    require(path.join(__dirname, '/app/models/' + model))(logger, connection);
+  });
 
   var options =
     { logger: logger
@@ -32,6 +38,10 @@ connection.once('open', function connectionOpen() {
   // Express settings
   require('./app')(app, logger, passport, options);
 
+  // Bootstrap routes
+  require(path.join(__dirname, '/app/controllers/card'))(app, options, passport);
+  app.use(express.static(path.join(__dirname, '/../../public')));
+
   // Start the app by listening on <port>
   app.listen(properties.port);
 
@@ -40,4 +50,5 @@ connection.once('open', function connectionOpen() {
 
   // Expose app
   exports = module.exports = app;
+
 });
