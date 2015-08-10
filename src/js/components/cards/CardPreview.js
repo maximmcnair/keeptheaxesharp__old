@@ -44,11 +44,17 @@ class CardPreview extends React.Component {
   */
   render() {
     var frontHTML = {__html: md.render(this.props.card.front) };
-    // var backHTML = {__html: md.render(this.props.card.back)};
+    var backHTML = {__html: md.render(this.props.card.back)};
 
     return (
       <div className="cardPreview">
-        <div className="cardPreview-content" dangerouslySetInnerHTML={frontHTML}>
+        <div className="cardPreview-content">
+          <div className="cardPreview-question" dangerouslySetInnerHTML={frontHTML}>
+          </div>
+        </div>
+        <div className="cardPreview-answer">
+          <div className="cardPreview-content" dangerouslySetInnerHTML={backHTML}>
+          </div>
         </div>
       </div>
     );
