@@ -45,6 +45,7 @@ connection.once('open', function connectionOpen() {
   require(path.join(__dirname, '/app/controllers/auth'))(app, options, passport);
   require(path.join(__dirname, '/app/controllers/card'))(app, options, passport);
   app.use(express.static(path.join(__dirname, '/../../public')));
+  require(__dirname + '/app/controllers/homepage')(app, options);
 
   // Start the app by listening on <port>
   app.listen(properties.port);
