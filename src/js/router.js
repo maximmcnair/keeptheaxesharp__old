@@ -67,7 +67,7 @@ var App = React.createClass({
             <div className="header-wrapper">
               <header className="header">
                 <div className="header-content">
-                  <a href="/" className="header-title">Keep Your Axe Sharp</a>
+                  <a href="/" className="header-title">Keep The Axe Sharp</a>
                   <nav className="header-nav">
                     <a href="/tags" className="header-link">Review</a>
                     <a href="/cards" className="header-link">Cards</a>
