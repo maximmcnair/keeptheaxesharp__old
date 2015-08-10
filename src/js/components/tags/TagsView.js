@@ -51,7 +51,7 @@ export default class Tags extends React.Component {
     return (
       <div>
         <h2 className="u-textCenter">Pick tags to review</h2>
-        <section className="u-textCenter">
+        <section className="review-tags">
           <CheckboxGroup
             name="tags"
             value={this.state.selected}
@@ -67,6 +67,7 @@ export default class Tags extends React.Component {
                   <span key={tag}>
                     <input type="checkbox" value={tag} id={tag} className="checkbox"/>
                     <label htmlFor={tag} className="checkbox-label">
+                      <i className="fa fa-check checkbox-icon"></i>
                       <span>{tag}</span>
                     </label>
                   </span>
