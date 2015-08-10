@@ -33,12 +33,16 @@ connection.once('open', function connectionOpen() {
     , connection: connection
     };
 
+  // Bootstrap passport config
+  require('./lib/passport')(passport, connection, options);
+
   var app = express();
 
   // Express settings
   require('./app')(app, logger, passport, options);
 
   // Bootstrap routes
+  require(path.join(__dirname, '/app/controllers/auth'))(app, options, passport);
   require(path.join(__dirname, '/app/controllers/card'))(app, options, passport);
   app.use(express.static(path.join(__dirname, '/../../public')));
 
