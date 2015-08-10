@@ -34,8 +34,8 @@ class CreateCard extends React.Component {
     super();
     // Set initial state
     this.state =
-      { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }```'
-      , back: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }```'
+      { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }\n```'
+      , back: '```go\n// You can edit this code!\n// Click here and start typing.\npackage main\n\nimport "fmt"\n\nfunc main() {\n	fmt.Println("Hello, 世界")\n}\n```'
       , answered: false
       };
     // Bind this to functions
