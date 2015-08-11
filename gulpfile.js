@@ -98,17 +98,21 @@ gulp.task('webserver', function () {
  * Gulp user tasks
  */
 gulp.task('default', ['sass', 'browserify']);
-// gulp.task('default', ['sass', 'browserify', 'mocha', 'eslint']);
+gulp.task('test', ['mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {
   gulp.watch([
     'src/**/*.*',
+    'src/**/**/*.*'
+  ], ['default']);
+  gulp.watch([
+    'src/**/*.*',
     'src/**/**/*.*',
     'test/*.*',
     'test/**/*.*'
-  ], ['default']);
+  ], ['test']);
 });
 
 gulp.task('dev', ['default', 'watch']);
