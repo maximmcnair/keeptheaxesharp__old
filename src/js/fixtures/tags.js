@@ -2,7 +2,7 @@ let tags =
   [ 'Go'
   , 'Angular'
   , 'Node.js'
-  , 'Javscript'
+  , 'Javascript'
   , 'React'
   , 'ES2015'
   ];
