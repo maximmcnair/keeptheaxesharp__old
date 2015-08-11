@@ -98,7 +98,8 @@ gulp.task('webserver', function () {
  * Gulp user tasks
  */
 gulp.task('default', ['sass', 'browserify']);
-gulp.task('test', ['mocha', 'eslint']);
+gulp.task('test', ['mocha']);
+// gulp.task('test', ['mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 

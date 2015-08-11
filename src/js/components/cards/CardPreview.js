@@ -77,7 +77,7 @@ class CardPreview extends React.Component {
     return (
       <div className="cardPreview">
         <div className="cardPreview-content">
-          <div className="cardPreview-question" dangerouslySetInnerHTML={frontHTML}></div>
+          <div dangerouslySetInnerHTML={frontHTML}></div>
           <ul className="cardPreview-tags tags">{tagNodes}</ul>
         </div>
         <div className="cardPreview-answer">
