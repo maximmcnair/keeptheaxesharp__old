@@ -10,9 +10,9 @@ var gutil = require('gulp-util');
 /*
  * Copy index file
  */
-gulp.task('copy_index', function () {
-  gulp.src('src/*.html').pipe(gulp.dest('public/'));
-});
+// gulp.task('copy_index', function () {
+//   gulp.src('src/*.html').pipe(gulp.dest('public/'));
+// });
 
 /*
  * Javascript building
@@ -97,18 +97,22 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['copy_index', 'sass', 'browserify']);
-// gulp.task('default', ['copy_index', 'sass', 'browserify', 'mocha', 'eslint']);
+gulp.task('default', ['sass', 'browserify']);
+gulp.task('test', ['mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {
   gulp.watch([
     'src/**/*.*',
+    'src/**/**/*.*'
+  ], ['default']);
+  gulp.watch([
+    'src/**/*.*',
     'src/**/**/*.*',
     'test/*.*',
     'test/**/*.*'
-  ], ['default']);
+  ], ['test']);
 });
 
-gulp.task('dev', ['default', 'watch', 'webserver']);
+gulp.task('dev', ['default', 'watch']);

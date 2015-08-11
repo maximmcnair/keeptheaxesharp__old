@@ -4,7 +4,7 @@ var RouterMixin = require('react-mini-router').RouterMixin;
 
 import Review from './components/review/ReviewView.js';
 import Tags from './components/tags/TagsView.js';
-import Landing from './components/landing/landing-view.js';
+import Landing from './components/landing/LandingView.js';
 import Create from './components/create/CreateCard.js';
 import CardList from './components/cards/CardList.js';
 
@@ -12,8 +12,7 @@ import CardList from './components/cards/CardList.js';
 var App = React.createClass({
     mixins: [RouterMixin]
   , routes: {
-      '/': 'landing'
-    , '/tags': 'tags'
+      '/': 'tags'
     , '/review/:tags': 'review'
     , '/create': 'create'
     , '/cards': 'cards'
@@ -51,7 +50,7 @@ var App = React.createClass({
         , cardsLinkClass = 'header-link';
 
       switch(true){
-        case this.state.path === '/tags':
+        case this.state.path === '/':
           tagsLinkClass += ' is-active';
           break;
         case this.state.path.indexOf('/review') !== -1:
@@ -62,9 +61,7 @@ var App = React.createClass({
           break;
       }
 
-      if(this.state.path === '/'){
-        return this.landing();
-      }else{
+      if(this.props.user){
         return (
           <div>
             <div className="header-wrapper">
@@ -72,7 +69,7 @@ var App = React.createClass({
                 <div className="header-content">
                   <a href="/" className="header-title">Keep The Axe Sharp</a>
                   <nav className="header-nav">
-                    <a href="/tags" className={tagsLinkClass}>Review</a>
+                    <a href="/" className={tagsLinkClass}>Review</a>
                     <a href="/cards" className={cardsLinkClass}>Cards</a>
                     <a href="/logout" className="header-link">Logout</a>
                   </nav>
@@ -86,6 +83,8 @@ var App = React.createClass({
             </section>
           </div>
         );
+      }else{
+        return this.landing();
       }
 
     }
