@@ -24,10 +24,10 @@ export default class Landing extends React.Component {
       <section className="landing">
         <div className="landing-intro">
           <div className="landing-logo">
-            <span className="landing-logo-text">Keep Your Axe Sharp</span>
+            <span className="landing-logo-text">Keep The Axe Sharp</span>
           </div>
           <h2 className="landing-title">Ever find yourself on the same Stack Overflow answer time and time again?</h2>
-          <p className="landing-desc">Keep Your Axe Sharp uses flashcards and a repetition spaced learning algorithm to help programmers commit easy forgotten patterns, edge cases and shortcuts to memory.</p>
+          <p className="landing-desc">Keep The Axe Sharp uses flashcards and a repetition spaced learning algorithm to help programmers commit easy forgotten patterns, edge cases and shortcuts to memory.</p>
           <p className="landing-desc">We support over 20 language syntaxes for our cards, including Ruby, C, C#, Go, Javascript, CoffeeScript, CSS, PHP, Java, Python, SQL, Perl and Clojure.</p>
           <a href="/auth/github" className="btn btn-icon landing-auth"><i className="fa fa-github"></i> Login with Github</a>
           <small className="landing-cards-small">It&#39;s free</small>
