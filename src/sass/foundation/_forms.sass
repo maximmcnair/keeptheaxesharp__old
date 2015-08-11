@@ -56,7 +56,7 @@ textarea
   border: none
   @include user-select(none)
   &:hover
-    background: lighten(#439FE0, 5%)
+    background: lighten($color-blue, 5%)
   &:active
     @include transform( translate3d(0, 1px, 0) )
 
@@ -68,7 +68,7 @@ i.checkbox-icon
   opacity: 0
 
 .checkbox:checked + .checkbox-label
-  background: #439FE0
+  background: $color-blue
 
 .checkbox:checked + .checkbox-label .checkbox-icon
   opacity: 1
