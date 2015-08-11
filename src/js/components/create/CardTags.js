@@ -5,7 +5,7 @@ var langTags =
   [ 'Go'
   , 'Angular'
   , 'Node.js'
-  , 'Javscript'
+  , 'Javascript'
   , 'React'
   , 'ES2015'
   ];
@@ -17,7 +17,7 @@ var CardTags = React.createClass({
 
   getInitialState: function () {
     return {
-      tags: ['Go']
+      tags: this.props.tags
     , completions: []
     };
   },
@@ -58,6 +58,7 @@ var CardTags = React.createClass({
       tags: tags
     , completions: []
     });
+    this.props.updateTags(tags);
   },
 
   render: function () {
@@ -83,7 +84,7 @@ var CardTags = React.createClass({
           transform={this.transform}
           validate={this.validate}
           addOnBlur={false}
-          placeholder="President"
+          placeholder="Tags"
         />
         {completionNodes}
       </div>

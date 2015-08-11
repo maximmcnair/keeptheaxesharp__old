@@ -18,9 +18,8 @@ require('codemirror/mode/perl/perl');
 
 //
 import CardService from './../../services/CardService.js';
-var navigate = require('react-mini-router').navigate;
-
 import TagsInput from './CardTags';
+var navigate = require('react-mini-router').navigate;
 
 /**
  * CreateCard Component
@@ -37,12 +36,14 @@ class CreateCard extends React.Component {
       { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }\n```'
       , back: '```go\n// You can edit this code!\n// Click here and start typing.\npackage main\n\nimport "fmt"\n\nfunc main() {\n	fmt.Println("Hello, 世界")\n}\n```'
       , answered: false
+      , tags: []
       };
     // Bind this to functions
     this.onFrontChange = this.onFrontChange.bind(this);
     this.onBackChange = this.onBackChange.bind(this);
     this.createCard = this.createCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
+    this.updateTags = this.updateTags.bind(this);
   }
 
   onFrontChange(e) {
@@ -57,6 +58,7 @@ class CreateCard extends React.Component {
     var newCard =
       { front: this.state.front
       , back: this.state.back
+      , tags: this.state.tags
       };
     CardService.create(newCard, function(error){
       if(!error){
@@ -68,6 +70,12 @@ class CreateCard extends React.Component {
   flipCard() {
     this.setState({
       answered: !this.state.answered
+    });
+  }
+
+  updateTags(tags) {
+    this.setState({
+      tags: tags
     });
   }
 
@@ -92,7 +100,7 @@ class CreateCard extends React.Component {
                 theme='default'
                 onChange={this.onFrontChange}
               ></CodeMirror>
-              <TagsInput></TagsInput>
+              <TagsInput tags={this.state.tags} updateTags={this.updateTags}></TagsInput>
             </div>
             <div className="u-textCenter card-btn-wrapper">
               <small className="question-showAnswer card-flip" onClick={this.flipCard}>
