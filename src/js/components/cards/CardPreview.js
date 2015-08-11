@@ -37,6 +37,15 @@ class CardPreview extends React.Component {
    */
   constructor () {
     super();
+    this.state = {showAnswer: false};
+    // Bind this to functions
+    this.showAnswer = this.showAnswer.bind(this);
+  }
+
+  showAnswer(){
+    this.setState({
+      showAnswer: true
+    });
   }
 
   /**
@@ -45,15 +54,25 @@ class CardPreview extends React.Component {
   render() {
     var frontHTML = {__html: md.render(this.props.card.front) };
     var backHTML = {__html: md.render(this.props.card.back)};
+    var answerHTML;
+    if(this.state.showAnswer){
+      answerHTML = (
+        <div dangerouslySetInnerHTML={backHTML}></div>
+      );
+    }else{
+      answerHTML = (
+        <a className="cardPreview-showAnswer" onClick={this.showAnswer}>Show Answer</a>
+      );
+    }
 
     return (
       <div className="cardPreview">
-        <div className="cardPreview-content">
-          <div className="cardPreview-question" dangerouslySetInnerHTML={frontHTML}>
-          </div>
+        <div className="cardPreview-question">
+          <div className="cardPreview-content" dangerouslySetInnerHTML={frontHTML}></div>
         </div>
         <div className="cardPreview-answer">
-          <div className="cardPreview-content" dangerouslySetInnerHTML={backHTML}>
+          <div className="cardPreview-content">
+            {answerHTML}
           </div>
         </div>
       </div>
