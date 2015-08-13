@@ -13,7 +13,11 @@ let CardService =
       }, function(code, responseText) {
         console.log('CardService.getAll response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        cb(null, response);
+        if(code === 200){
+          cb(null, response);
+        }else{
+          cb(true);
+        }
       });
     }
   , create: function (data, cb) {

@@ -106,14 +106,10 @@ gulp.task('compiled', ['default']);
 gulp.task('watch', function () {
   gulp.watch([
     'src/**/*.*',
-    'src/**/**/*.*'
-  ], ['default']);
-  gulp.watch([
-    'src/**/*.*',
     'src/**/**/*.*',
     'test/*.*',
     'test/**/*.*'
-  ], ['test']);
+  ], ['test', 'default']);
 });
 
 gulp.task('dev', ['default', 'watch']);
