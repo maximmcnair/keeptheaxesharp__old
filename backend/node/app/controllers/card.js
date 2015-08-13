@@ -18,7 +18,8 @@ module.exports = function (app, options) {
     var query = {userId: req.user.id}
     if(req.query.tags) query.tags = { $in: req.query.tags }
     Model.find(query, function (error, documents) {
-      logger.info('Finding all ' + model + ' documents', query, documents)
+      logger.info('Finding all ' + model + ' documents', query)
+      logger.debug('Finding all ' + model + ' documents', query, documents)
       res.json(documents)
     })
   })
