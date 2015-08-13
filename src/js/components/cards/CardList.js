@@ -51,7 +51,7 @@ export default class CardList extends React.Component {
     return (
       <section className="cardPreviewList">
         <h2 className="cardPreviewList-title">Cards</h2>
-        <a className="cardPreviewList-create" href="/create"><i className="fa fa-plus"></i>Create Card</a>
+        <a className="btn btn-sm cardPreviewList-create" href="/create"><i className="fa fa-plus"></i>Create Card</a>
         <div className="cardPreviewList-cards">
           {cardNodes}
         </div>
