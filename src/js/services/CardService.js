@@ -6,9 +6,9 @@ import Qs from 'qs';
 import tags from './../fixtures/tags.js';
 
 let CardService =
-  { getAll: function (cb) {
+  { getAll: function (query, cb) {
       nanoajax.ajax({
-        url: '/api/card'
+        url: '/api/card?' + Qs.stringify(query)
       , method: 'GET'
       }, function(code, responseText) {
         console.log('CardService.getAll response', code, JSON.parse(responseText));

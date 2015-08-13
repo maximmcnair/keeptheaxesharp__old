@@ -13,7 +13,15 @@ module.exports = function (app, options) {
 
   logger.info('Setting up card routes');
 
-
+  /* Get all existing documents */
+  app.get(prefix + '/', function (req, res) {
+    var query = {userId: req.user.id}
+    if(req.query.tags) query.tags = { $in: req.query.tags }
+    Model.find(query, function (error, documents) {
+      logger.info('Finding all ' + model + ' documents', query, documents)
+      res.json(documents)
+    })
+  })
 
   crudApi(app, prefix, model, options, ensureAuthorized(logger));
 

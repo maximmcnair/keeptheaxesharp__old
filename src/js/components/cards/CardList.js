@@ -25,7 +25,7 @@ export default class CardList extends React.Component {
    * @desc assigns a baobab listener after component has been mounted
    */
   componentDidMount () {
-    CardService.getAll((error, cards) => {
+    CardService.getAll({}, (error, cards) => {
       if(!error){
         // Set cards to state
         this.setState({
