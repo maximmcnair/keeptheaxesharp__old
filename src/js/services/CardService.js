@@ -64,14 +64,18 @@ let CardService =
       });
     }
   , getTags: function (cb) {
-      // nanoajax.ajax({
-      //   url: '/api/tags'
-      // , method: 'GET'
-      // }, function(code, responseText) {
-      //   // console.log('CardService.getTags response', code, JSON.parse(responseText));
-      //   var response = JSON.parse(responseText);
-      //   cb(null, response);
-      // });
+      nanoajax.ajax({
+        url: '/api/tags'
+      , method: 'GET'
+      }, function(code, responseText) {
+        // console.log('CardService.getTags response', code, JSON.parse(responseText));
+        var response = JSON.parse(responseText);
+        if(code === 200){
+          cb(null, response);
+        }else{
+          cb(true);
+        }
+      });
     }
   };
 
