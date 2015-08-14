@@ -51,13 +51,17 @@ let CardService =
       });
     }
   , delete: function (id, cb) {
-      // nanoajax.ajax({
-      //   url: '/api/card/' + id
-      // , method: 'DELETE'
-      // }, function(code, responseText, request) {
-      //   // console.log('CardService.delete response', code, responseText, request);
-      //   if(responseText === 'OK') cb(null);
-      // });
+      nanoajax.ajax({
+        url: '/api/card/' + id
+      , method: 'DELETE'
+      }, function(code, responseText) {
+      //   // console.log('CardService.delete response', code, responseText);
+        if(responseText === 'OK'){
+          cb(null);
+        }else{
+          cb(true);
+        }
+      });
     }
   , getTags: function (cb) {
       // nanoajax.ajax({
