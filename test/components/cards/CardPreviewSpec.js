@@ -72,4 +72,18 @@ describe('CardPreview Component', () => {
     expect(cardHTML).to.contain('<h2>Back of card</h2>');
   });
 
+  it('Should add tags for card', function(){
+    let cardFixture =
+      { front: '# Front of card'
+      , back: '## Back of card'
+      , tags: ['react', 'angular']
+      }
+    var renderedCard = TestUtils.renderIntoDocument(
+      <CardPreviewComponent card={cardFixture}/>, document.body
+    );
+    // Expect there to be 2 tags rendered
+    var tags = TestUtils.scryRenderedDOMComponentsWithClass(renderedCard, 'tag');
+    expect(tags.length).to.equal(2);
+  });
+
 });
