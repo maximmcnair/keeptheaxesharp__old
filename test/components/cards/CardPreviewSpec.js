@@ -1,5 +1,5 @@
 /**
- * Basket Component Spec
+ * Card Preview Spec
  */
 
 'use strict';
