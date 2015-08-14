@@ -11,7 +11,7 @@ let CardService =
         url: '/api/card?' + Qs.stringify(query)
       , method: 'GET'
       }, function(code, responseText) {
-        console.log('CardService.getAll response', code, JSON.parse(responseText));
+        // console.log('CardService.getAll response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
         if(code === 200){
           cb(null, response);
@@ -26,7 +26,7 @@ let CardService =
       , body: Qs.stringify(data)
       , method: 'POST'
       }, function(code, responseText) {
-        console.log('CardService.create response', code, JSON.parse(responseText));
+        // console.log('CardService.create response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
         cb(null, response);
       });
@@ -37,7 +37,7 @@ let CardService =
       , body: Qs.stringify(data)
       , method: 'PATCH'
     }, function(code, responseText) {
-        console.log('CardService.update response', code, responseText);
+        // console.log('CardService.update response', code, responseText);
         var response = JSON.parse(responseText);
         if(code === 200) cb(null, response);
       });
@@ -47,7 +47,7 @@ let CardService =
         url: '/api/card/' + id
       , method: 'DELETE'
       }, function(code, responseText, request) {
-        console.log('CardService.delete response', code, responseText, request);
+        // console.log('CardService.delete response', code, responseText, request);
         if(responseText === 'OK') cb(null);
       });
     }
@@ -56,7 +56,7 @@ let CardService =
         url: '/api/tags'
       , method: 'GET'
       }, function(code, responseText) {
-        console.log('CardService.getTags response', code, JSON.parse(responseText));
+        // console.log('CardService.getTags response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
         cb(null, response);
       });

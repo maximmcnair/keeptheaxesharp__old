@@ -66,27 +66,27 @@ class CardPreview extends React.Component {
     }
 
     // Generate tag nodes from tags in state
-    var tagComponent = ''
-    if(this.props.card.tags && this.props.card.tags.length){
-      var tagNodes = this.props.card.tags.map(function(tag){
-        return (
-          <li key={tag} className="tag">{tag}</li>
-        );
-      });
-
-      tagComponent =
-        <div className="cardPreview-tags">
-          <div className="tags">
-            <i className="fa fa-tags tags-icon"></i>
-            <ul className="tags-list">{tagNodes}</ul>
-          </div>
-        </div>
-
-    }
+    // var tagComponent = ''
+    // if(this.props.card.tags && this.props.card.tags.length){
+    //   var tagNodes = this.props.card.tags.map(function(tag){
+    //     return (
+    //       <li key={tag} className="tag">{tag}</li>
+    //     );
+    //   });
+    //
+    //   tagComponent =
+    //     <div className="cardPreview-tags">
+    //       <div className="tags">
+    //         <i className="fa fa-tags tags-icon"></i>
+    //         <ul className="tags-list">{tagNodes}</ul>
+    //       </div>
+    //     </div>
+    //
+    // }
+      // {tagComponent}
 
     return (
       <div className="cardPreview">
-        {tagComponent}
         <div className="cardPreview-content">
           <div dangerouslySetInnerHTML={frontHTML}></div>
         </div>
