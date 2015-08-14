@@ -40,30 +40,34 @@ let CardService =
         url: '/api/card/' + id
       , body: Qs.stringify(data)
       , method: 'PATCH'
-    }, function(code, responseText) {
+      }, function(code, responseText) {
         // console.log('CardService.update response', code, responseText);
         var response = JSON.parse(responseText);
-        if(code === 200) cb(null, response);
+        if(code === 200){
+          cb(null, response);
+        }else{
+          cb(true);
+        }
       });
     }
   , delete: function (id, cb) {
-      nanoajax.ajax({
-        url: '/api/card/' + id
-      , method: 'DELETE'
-      }, function(code, responseText, request) {
-        // console.log('CardService.delete response', code, responseText, request);
-        if(responseText === 'OK') cb(null);
-      });
+      // nanoajax.ajax({
+      //   url: '/api/card/' + id
+      // , method: 'DELETE'
+      // }, function(code, responseText, request) {
+      //   // console.log('CardService.delete response', code, responseText, request);
+      //   if(responseText === 'OK') cb(null);
+      // });
     }
   , getTags: function (cb) {
-      nanoajax.ajax({
-        url: '/api/tags'
-      , method: 'GET'
-      }, function(code, responseText) {
-        // console.log('CardService.getTags response', code, JSON.parse(responseText));
-        var response = JSON.parse(responseText);
-        cb(null, response);
-      });
+      // nanoajax.ajax({
+      //   url: '/api/tags'
+      // , method: 'GET'
+      // }, function(code, responseText) {
+      //   // console.log('CardService.getTags response', code, JSON.parse(responseText));
+      //   var response = JSON.parse(responseText);
+      //   cb(null, response);
+      // });
     }
   };
 
