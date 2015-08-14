@@ -55,7 +55,7 @@ let CardService =
         url: '/api/card/' + id
       , method: 'DELETE'
       }, function(code, responseText) {
-      //   // console.log('CardService.delete response', code, responseText);
+        // console.log('CardService.delete response', code, responseText);
         if(responseText === 'OK'){
           cb(null);
         }else{
