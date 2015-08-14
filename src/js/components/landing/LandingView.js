@@ -6,7 +6,7 @@ import React from 'react';
  * Landing View
  * @extends {React.Component}
  */
-export default class Landing extends React.Component {
+class Landing extends React.Component {
   /**
    * @desc sets initial state
    */
@@ -127,3 +127,5 @@ export default class Landing extends React.Component {
   }
 
 }
+
+export default Landing;
