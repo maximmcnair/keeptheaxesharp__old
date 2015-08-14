@@ -28,7 +28,11 @@ let CardService =
       }, function(code, responseText) {
         // console.log('CardService.create response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        cb(null, response);
+        if(code === 200){
+          cb(null, response);
+        }else{
+          cb(trues);
+        }
       });
     }
   , update: function (id, data, cb) {

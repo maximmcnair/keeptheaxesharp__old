@@ -41,18 +41,18 @@ describe('CardPreview Component', () => {
     var renderedCard = TestUtils.renderIntoDocument(
       <CardPreviewComponent card={cardFixture}/>, document.body
     );
-    var cardHTML = React.findDOMNode(renderedCard).innerHTML
+    var cardHTML = React.findDOMNode(renderedCard).innerHTML;
     // Expect card to contain card fixture `.front`
-    expect(cardHTML).to.contain('<h1>Front of card</h1>')
+    expect(cardHTML).to.contain('<h1>Front of card</h1>');
   });
 
   it('Expect back to not be visible initially', () => {
     var renderedCard = TestUtils.renderIntoDocument(
       <CardPreviewComponent card={cardFixture}/>, document.body
     );
-    var cardHTML = React.findDOMNode(renderedCard).innerHTML
+    var cardHTML = React.findDOMNode(renderedCard).innerHTML;
     // Expect card's state.showAnswer to equal `false`
-    expect(renderedCard.state.showAnswer).to.be.false
+    expect(renderedCard.state.showAnswer).to.be.false;
     // Expect card fixture `.back` to not be rendered
     expect(cardHTML).to.not.contain('<h2>Back of card</h2>')
   });
@@ -61,15 +61,15 @@ describe('CardPreview Component', () => {
     var renderedCard = TestUtils.renderIntoDocument(
       <CardPreviewComponent card={cardFixture}/>, document.body
     );
-    var cardHTML = React.findDOMNode(renderedCard).innerHTML
+    var cardHTML = React.findDOMNode(renderedCard).innerHTML;
     // Expect there to be a show answer button
     expect(cardHTML).to.contain('Show Answer')
     // Simulate user click
-    var showAnswerBtn = TestUtils.findRenderedDOMComponentWithClass(renderedCard, 'cardPreview-showAnswer')
+    var showAnswerBtn = TestUtils.findRenderedDOMComponentWithClass(renderedCard, 'cardPreview-showAnswer');
     TestUtils.Simulate.click(showAnswerBtn);
     // Expect card fixture `.back` to be rendered
-    var cardHTML = React.findDOMNode(renderedCard).innerHTML
-    expect(cardHTML).to.contain('<h2>Back of card</h2>')
+    var cardHTML = React.findDOMNode(renderedCard).innerHTML;
+    expect(cardHTML).to.contain('<h2>Back of card</h2>');
   });
 
 });
