@@ -1,5 +1,5 @@
 /**
- * Card Preview Spec
+ * Landing View Spec
  */
 
 'use strict';
@@ -15,7 +15,7 @@ var React, TestUtils;
 /**
  * @test {LandingViewComponent}
  */
-describe('CardPreview Component', () => {
+describe('LandingView Component', () => {
   before(function () {
     // init jsdom
     global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
