@@ -31,7 +31,7 @@ let CardService =
         if(code === 200){
           cb(null, response);
         }else{
-          cb(trues);
+          cb(true);
         }
       });
     }

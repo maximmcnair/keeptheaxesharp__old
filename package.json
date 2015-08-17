@@ -8,7 +8,7 @@
     "url": "https://github.com/maximmcnair/keeptheaxesharp.git"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --reporter list --compilers js:babel/register"
+    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha"
   },
   "author": "Maxim McNair",
   "bugs": {
@@ -44,6 +44,7 @@
     "gulp-sourcemaps": "^1.5.1",
     "gulp-util": "^3.0.4",
     "gulp-webserver": "^0.9.1",
+    "isparta": "^3.0.3",
     "jsdom": "^3.1.2",
     "mocha": "^2.2.5",
     "mockery": "^1.4.0",

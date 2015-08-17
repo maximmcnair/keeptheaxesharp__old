@@ -60,7 +60,7 @@ describe('CardService.create()', function(){
     });
   });
 
-  if('should return an error when ajax request is 404', function(){
+  it('should return an error when ajax request is 404', function(){
     // Define ajax reponse
     nanoStub.ajax.yields(404, '{}');
 
