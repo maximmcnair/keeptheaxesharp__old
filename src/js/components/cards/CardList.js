@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-// import CardPreview from './CardPreview';
+import CardPreview from './CardPreview';
 import CardService from './../../services/CardService';
 
 /**
@@ -26,7 +26,6 @@ export default class CardList extends React.Component {
    */
   componentDidMount () {
     CardService.getAll({}, (error, cards) => {
-      console.log('**', error, cards)
       if(!error){
         // Set cards to state
         this.setState({
@@ -41,21 +40,21 @@ export default class CardList extends React.Component {
    */
   render() {
     // Generate card nodes from cards in state
-    // var cardNodes = this.state.cards.map(function(card){
-    //   return (
-    //     <CardPreview
-    //       card={card}
-    //     ></CardPreview>
-    //   );
-    // });
+    var cardNodes = this.state.cards.map(function(card){
+      return (
+        <CardPreview
+          card={card}
+        ></CardPreview>
+      );
+    });
 
-        // <h2 className="cardPreviewList-title">Cards</h2>
-        // <a className="btn btn-sm cardPreviewList-create" href="/create"><i className="fa fa-plus"></i>Create Card</a>
-        // <div className="cardPreviewList-cards">
-        //   {cardNodes}
-        // </div>
     return (
       <section className="cardPreviewList">
+        <h2 className="cardPreviewList-title">Cards</h2>
+        <a className="btn btn-sm cardPreviewList-create" href="/create"><i className="fa fa-plus"></i>Create Card</a>
+        <div className="cardPreviewList-cards">
+          {cardNodes}
+        </div>
       </section>
     );
   }
