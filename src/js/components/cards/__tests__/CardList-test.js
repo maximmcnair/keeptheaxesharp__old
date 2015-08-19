@@ -1,3 +1,6 @@
+/**
+ * Card List Spec
+ */
 var mockCardService =
   { getAll: function (query, cb) {
       cb(null, ['mock-content-one', 'mock-content-two']);
@@ -5,7 +8,10 @@ var mockCardService =
   };
 import blankComponent from './../../../__mocks__/blankComponent';
 
-describe('CardList', () => {
+/**
+ * @test {CardListComponent}
+ */
+describe('CardListComponent', () => {
   var CardList;
   var React = require('react');
   var TestUtils = require('react/lib/ReactTestUtils');
