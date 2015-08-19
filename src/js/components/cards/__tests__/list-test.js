@@ -1,6 +1,6 @@
-var rewire = require('rewire')
 var mockCardService =
-  { getAll: function (query, cb) {
+  { getAll: function (query123, cb) {
+      console.log('mocked')
       cb(null, ['one', 'two']);
     }
   };
@@ -11,8 +11,10 @@ describe('CardList', () => {
   var TestUtils = require('react/lib/ReactTestUtils');
 
   beforeEach(() => {
-    CardList = rewire('../CardList.js')
-    CardList.__set__('CardService', mockCardService);
+    CardList = require('../CardList.js')
+    // console.log( CardList.__Rewire__('CardService') );
+    CardList.__Rewire__('CardService', mockCardService);
+    // console.log( CardList.__get__('CardService').getAll );
   });
 
   it('can add a member', () => {
@@ -25,7 +27,6 @@ describe('CardList', () => {
     // Simulate component mounting
     el.componentDidMount();
     // Expect state to contain cards
-    // expect(el.state.cards).to.be.instanceof(Array)
     expect(el.state.cards.length).toEqual(2)
   });
 

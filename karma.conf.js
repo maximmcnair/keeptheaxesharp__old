@@ -1,5 +1,3 @@
-var RewirePlugin = require('rewire-webpack');
-
 module.exports = function(config) {
   config.set({
     browsers: [
@@ -25,13 +23,10 @@ module.exports = function(config) {
     webpack: {
       module: {
         loaders: [
-          { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader' },
+          { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader?plugins=babel-plugin-rewire' },
           { test: /\.json$/, loader: 'json-loader' },
         ],
       },
-      plugins: [
-        new RewirePlugin()
-      ],
       watch: true,
     },
     webpackServer: {
