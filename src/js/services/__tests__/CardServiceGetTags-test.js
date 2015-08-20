@@ -4,9 +4,9 @@
 import Qs from 'qs';
 
 /**
- * @test CardService.delete()
+ * @test CardService.getTags()
  */
-describe('CardService.delete()', function(){
+describe('CardService.getTags()', function(){
   var mockNanoajax
     , CardService
     , id = '123'
@@ -22,33 +22,33 @@ describe('CardService.delete()', function(){
 
   it('should call nanoajax with correct query', function(){
     // Call method
-    CardService.delete(id);
+    CardService.getTags();
 
     // Expect ajax to have been called
     expect(mockNanoajax.ajax.calledOnce).toBeTruthy();
     // Expect ajax to have been called with correct method
-    expect(mockNanoajax.ajax.args[0][0].method).toEqual('DELETE');
+    expect(mockNanoajax.ajax.args[0][0].method).toEqual('GET');
     // Expect it to call correct url
-    expect(mockNanoajax.ajax.args[0][0].url).toContain('/api/card/')
-    // Expect url to contain the id
-    expect(mockNanoajax.ajax.args[0][0].url).toContain(id);
+    expect(mockNanoajax.ajax.args[0][0].url).toContain('/api/tags')
   });
 
-  it('should return no error on 200', function(){
+  it('should return array returned by ajax request on success', function(){
     // Define ajax response
-    mockNanoajax.ajax.yields(200, 'OK');
+    mockNanoajax.ajax.yields(200, '["one", "two"]');
     // Call method
-    CardService.delete(id, function(error){
+    CardService.getTags(function(error, tags){
       // Expect there to be no error
       expect(error).toBeNull();
+      // Expect `card` to be an array
+      expect(tags).toEqual(jasmine.any(Array));
     });
   });
 
-  it('should return an error if 404', () => {
+  it('should return error true when ajax request is 404', function(){
     // Define ajax response
-    mockNanoajax.ajax.yields(404, '{}');
+    mockNanoajax.ajax.yields(404, '[]');
     // Call method
-    CardService.delete(id, function(error, responseText){
+    CardService.getTags(function(error, tags){
       // Expect there to be no error
       expect(error).toBeTruthy();
     });

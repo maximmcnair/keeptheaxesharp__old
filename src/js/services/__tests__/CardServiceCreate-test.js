@@ -7,7 +7,8 @@ import Qs from 'qs';
  * @test CardService.create()
  */
 describe('CardService.create()', function(){
-  var mockNanoajax, CardService
+  var mockNanoajax
+    , CardService
 
   beforeEach(function(){
     // Create stub for ajax method
