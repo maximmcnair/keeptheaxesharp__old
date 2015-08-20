@@ -11,6 +11,7 @@ module.exports = function(config) {
     ],
     frameworks: [
       'jasmine',
+      'sinon',
     ],
     preprocessors: {
       'tests.webpack.js': [

@@ -1,9 +1,10 @@
 import nanoajax from 'nanoajax';
+import Qs from 'qs';
 
 let CardService =
   { getAll: function (query, cb) {
       nanoajax.ajax({
-        url: '/api/card'
+        url: '/api/card' + Qs.stringify(query)
       , method: 'GET'
       }, function(code, responseText) {
         // console.log('CardService.getAll response', code, JSON.parse(responseText));
@@ -13,6 +14,28 @@ let CardService =
         }else{
           cb(true);
         }
+      });
+    }
+  , create: function (data, cb) {
+      nanoajax.ajax({
+        url: '/api/card'
+      , body: Qs.stringify(data)
+      , method: 'POST'
+      }, function(code, responseText) {
+        console.log('CardService.create response', code, JSON.parse(responseText));
+        var response = JSON.parse(responseText);
+        cb(null, response);
+      });
+    }
+  , update: function (id, data, cb) {
+      nanoajax.ajax({
+        url: '/api/card/' + id
+      , body: Qs.stringify(data)
+      , method: 'PATCH'
+    }, function(code, responseText) {
+        console.log('CardService.update response', code, responseText);
+        var response = JSON.parse(responseText);
+        if(code === 200) cb(null, response);
       });
     }
   };
@@ -35,28 +58,6 @@ export default CardService;
 //         console.log('CardService.getAll response', code, JSON.parse(responseText));
 //         var response = JSON.parse(responseText);
 //         cb(null, response);
-//       });
-//     }
-//   , create: function (data, cb) {
-//       nanoajax.ajax({
-//         url: '/api/card'
-//       , body: Qs.stringify(data)
-//       , method: 'POST'
-//       }, function(code, responseText) {
-//         console.log('CardService.create response', code, JSON.parse(responseText));
-//         var response = JSON.parse(responseText);
-//         cb(null, response);
-//       });
-//     }
-//   , update: function (id, data, cb) {
-//       nanoajax.ajax({
-//         url: '/api/card/' + id
-//       , body: Qs.stringify(data)
-//       , method: 'PATCH'
-//     }, function(code, responseText) {
-//         console.log('CardService.update response', code, responseText);
-//         var response = JSON.parse(responseText);
-//         if(code === 200) cb(null, response);
 //       });
 //     }
 //   , delete: function (id, cb) {
