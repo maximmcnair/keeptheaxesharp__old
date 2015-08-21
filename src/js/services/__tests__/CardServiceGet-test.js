@@ -17,7 +17,7 @@ describe('CardService.getAll() test', function(){
     // require CardService
     CardService = require('./../CardService');
     // replace the module `request` with a stub object
-    revert = CardService.__Rewire__('nanoajax', mockNanoajax);
+    CardService.__Rewire__('nanoajax', mockNanoajax);
   });
 
   it('should call nanoajax with correct query', function(){
