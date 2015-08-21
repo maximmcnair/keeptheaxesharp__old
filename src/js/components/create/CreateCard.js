@@ -16,7 +16,6 @@ require('codemirror/mode/sql/sql');
 require('codemirror/mode/clojure/clojure');
 require('codemirror/mode/perl/perl');
 
-//
 import CardService from './../../services/CardService.js';
 import TagsInput from './CardTags';
 var navigate = require('react-mini-router').navigate;
