@@ -60,29 +60,29 @@ class Card extends React.Component {
   render() {
     // Render correct class
     var cardClass = 'card'
-    //   , index = this.props.cardIndex - this.props.currentCard;
+      , index = this.props.cardIndex - this.props.currentCard;
 
     // Generate class for correct card position
-    // switch(true){
-    //   case (index < 0):
-    //     cardClass = 'card card-done';
-    //     break;
-    //   case (index === 0):
-    //     cardClass = 'card card-current';
-    //     break;
-    //   case (index === 1):
-    //     cardClass = 'card card-second';
-    //     break;
-    //   case (index === 2):
-    //     cardClass = 'card card-third';
-    //     break;
-    //   case (index === 3):
-    //     cardClass = 'card card-fourth';
-    //     break;
-    //   case (index > 3):
-    //     cardClass = 'card';
-    //     break;
-    // }
+    switch(true){
+      case (index < 0):
+        cardClass = 'card card-done';
+        break;
+      case (index === 0):
+        cardClass = 'card card-current';
+        break;
+      case (index === 1):
+        cardClass = 'card card-second';
+        break;
+      case (index === 2):
+        cardClass = 'card card-third';
+        break;
+      case (index === 3):
+        cardClass = 'card card-fourth';
+        break;
+      case (index > 3):
+        cardClass = 'card';
+        break;
+    }
 
     // Generate class to flip card
     if(this.props.card.answered){
