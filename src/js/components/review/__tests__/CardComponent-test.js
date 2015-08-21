@@ -12,6 +12,11 @@ describe('CardComponentComponent', () => {
     , back: '## back of card'
     , answered: false
     }
+  var CardAnsweredFixture =
+    { front: '# front of card'
+    , back: '## back of card'
+    , answered: true
+    }
   var React = require('react');
   var TestUtils = require('react/lib/ReactTestUtils');
 
@@ -64,16 +69,67 @@ describe('CardComponentComponent', () => {
   });
 
   it('should show back if `.props.card.answered` is true', () => {
-    var CardAnsweredFixture =
-      { front: '# front of card'
-      , back: '## back of card'
-      , answered: true
-      }
     // Render into doc
     const el = TestUtils.renderIntoDocument(<CardComponent card={CardAnsweredFixture} />);
     // Expect `.card` to have class `.is--answered`
     var cardElem = TestUtils.findRenderedDOMComponentWithClass(el, 'card');
     expect( React.findDOMNode(cardElem).className ).toContain('is--answered');
+  });
+
+  it('should allow user to mark card correct', () => {
+    // Setup spy for markCardCorrect
+    var spyMarkCardCorrect = sinon.spy();
+    // Expect there to be a button
+    const el = TestUtils.renderIntoDocument(<CardComponent card={CardAnsweredFixture} markCardCorrect={spyMarkCardCorrect}/>);
+    // Simulate user clicking button
+    var cardActionCorrect = TestUtils.findRenderedDOMComponentWithClass(el, 'card-action-right');
+    TestUtils.Simulate.click(cardActionCorrect);
+    // Expect `props.markCardCorrect` with true
+    expect(spyMarkCardCorrect.callCount).toEqual(1);
+    expect(spyMarkCardCorrect.calledWith(true)).toEqual(true);
+  });
+
+  it('should allow user to mark card wrong', () => {
+    // Setup spy for markCardCorrect
+    var spyMarkCardCorrect = sinon.spy();
+    // Expect there to be a button
+    const el = TestUtils.renderIntoDocument(<CardComponent card={CardAnsweredFixture} markCardCorrect={spyMarkCardCorrect}/>);
+    // Simulate user clicking button
+    var cardActionCorrect = TestUtils.findRenderedDOMComponentWithClass(el, 'card-action-wrong');
+    TestUtils.Simulate.click(cardActionCorrect);
+    // Expect `props.markCardCorrect` with true
+    expect(spyMarkCardCorrect.callCount).toEqual(1);
+    expect(spyMarkCardCorrect.calledWith(false)).toEqual(true);
+  });
+
+  it('should show correct className when card is answered correct', () => {
+    var CardAnsweredCorrect =
+      { front: '# front of card'
+      , back: '## back of card'
+      , answered: true
+      , answeredCorrect: true
+      }
+    // Expect there to be a button
+    const el = TestUtils.renderIntoDocument(<CardComponent card={CardAnsweredCorrect}/>);
+    // Get `.card-action` elem
+    var cardAction = TestUtils.findRenderedDOMComponentWithClass(el, 'card-action');
+    // Expect it to have `is-correct` class
+    expect( React.findDOMNode(cardAction).className ).toContain('is-correct');
+  });
+
+  it('should show correct className when card is answered wrong', () => {
+    var CardAnsweredCorrect =
+      { front: '# front of card'
+      , back: '## back of card'
+      , answered: true
+      , answeredCorrect: false
+      }
+    // Expect there to be a button
+    const el = TestUtils.renderIntoDocument(<CardComponent card={CardAnsweredCorrect}/>);
+    // Get `.card-action` elem
+    var cardAction = TestUtils.findRenderedDOMComponentWithClass(el, 'card-action');
+    // Expect it to have `is-wrong` class
+    expect( React.findDOMNode(cardAction).className ).toContain('is-wrong');
   });
 
 });
