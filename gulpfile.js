@@ -32,10 +32,6 @@ gulp.task('browserify', function () {
 });
 
 /*
- * Javascript Testing
- */
-
-/*
  * Javascript Linting
  */
 var eslint = require('gulp-eslint');
@@ -82,8 +78,7 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['sass', 'browserify']);
-
+gulp.task('default', ['sass', 'browserify', 'eslint']);
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {

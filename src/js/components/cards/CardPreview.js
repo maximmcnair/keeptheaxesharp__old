@@ -81,7 +81,6 @@ class CardPreview extends React.Component {
             <ul className="tags-list">{tagNodes}</ul>
           </div>
         </div>
-
     }
 
     return (
