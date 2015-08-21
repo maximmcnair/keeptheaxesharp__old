@@ -34,21 +34,6 @@ gulp.task('browserify', function () {
 /*
  * Javascript Testing
  */
-var mocha = require('gulp-mocha');
-var babel = require('babel/register');
-gulp.task('mocha', function () {
-  return gulp.src(
-    [ './test/testSpec.js'
-    , './test/*.js'
-    , './test/**/*.js'
-    ], {read: false})
-    .pipe(mocha({
-      reporter: 'nyan',
-      compilers: {
-        js: babel
-      }
-    }));
-});
 
 /*
  * Javascript Linting
@@ -98,8 +83,6 @@ gulp.task('webserver', function () {
  * Gulp user tasks
  */
 gulp.task('default', ['sass', 'browserify']);
-gulp.task('test', ['mocha']);
-// gulp.task('test', ['mocha', 'eslint']);
 
 gulp.task('compiled', ['default']);
 
@@ -108,12 +91,6 @@ gulp.task('watch', function () {
     'src/**/*.*',
     'src/**/**/*.*'
   ], ['default']);
-  gulp.watch([
-    'src/**/*.*',
-    'src/**/**/*.*',
-    'test/*.*',
-    'test/**/*.*'
-  ], ['test']);
 });
 
 gulp.task('dev', ['default', 'watch']);
