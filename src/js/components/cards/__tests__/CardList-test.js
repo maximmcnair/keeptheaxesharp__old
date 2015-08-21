@@ -22,7 +22,7 @@ describe('CardListComponent', () => {
     CardList.__Rewire__('CardPreview', blankComponent);
   });
 
-  it('Get cards form CardService', () => {
+  it('should get cards form CardService', () => {
     const el = TestUtils.renderIntoDocument(<CardList />);
     // Using `TestUtils.renderIntoDocument` will automatically call
     // `.componentDidMount`, so lets restart the state
