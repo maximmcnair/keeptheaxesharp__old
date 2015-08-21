@@ -80,7 +80,7 @@ class CardPreview extends React.Component {
             <i className="fa fa-tags tags-icon"></i>
             <ul className="tags-list">{tagNodes}</ul>
           </div>
-        </div>    
+        </div>
     }
 
     return (
