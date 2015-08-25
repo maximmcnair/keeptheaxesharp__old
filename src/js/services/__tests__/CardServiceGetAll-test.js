@@ -8,8 +8,7 @@ import Qs from 'qs';
  */
 describe('CardService.getAll() test', function(){
   var mockNanoajax
-    , CardService
-    , revert;
+    , CardService;
 
   beforeEach(function(){
     // Create stub for ajax method
