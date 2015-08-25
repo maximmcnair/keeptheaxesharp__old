@@ -8,11 +8,16 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 
 /*
- * Copy index file
+ * Copy static files
  */
-// gulp.task('copy_index', function () {
-//   gulp.src('src/*.html').pipe(gulp.dest('public/'));
-// });
+gulp.task('copyStatics', function () {
+  gulp.src([
+    './src/fonts/**.*'
+  , './src/img/**.*'
+  , './src/css/**.*'
+  , './src/favicon.ico'
+], {base: './src'}).pipe(gulp.dest('public/assets'));
+});
 
 /*
  * Javascript building
@@ -78,7 +83,7 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['sass', 'browserify', 'eslint']);
+gulp.task('default', ['copyStatics', 'sass', 'browserify', 'eslint']);
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {
