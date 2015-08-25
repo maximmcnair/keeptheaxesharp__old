@@ -16,6 +16,7 @@ var App = React.createClass({
     , '/review/:tags': 'review'
     , '/create': 'create'
     , '/cards': 'cards'
+    , '/edit/:id': 'edit'
     }
   , landing: function(){
       return (
@@ -35,6 +36,11 @@ var App = React.createClass({
   , create: function(){
       return (
         <Create></Create>
+      );
+    }
+  , edit: function(id){
+      return (
+        <Create id={id}></Create>
       );
     }
   , cards: function(){
