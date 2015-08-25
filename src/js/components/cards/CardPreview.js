@@ -83,6 +83,9 @@ class CardPreview extends React.Component {
         </div>
     }
 
+    // Generate edit card url
+    var editCardUrl = '/edit/' + this.props.card._id
+
     return (
       <div className="cardPreview">
         {tagComponent}
@@ -94,6 +97,7 @@ class CardPreview extends React.Component {
             {answerHTML}
           </div>
         </div>
+        <a href={editCardUrl}>Edit Card</a>
       </div>
     );
   }

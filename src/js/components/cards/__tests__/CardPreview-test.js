@@ -67,4 +67,19 @@ describe('CardPreview Component', () => {
     expect(tags.length).toEqual(2);
   });
 
+  it('should have a link to edit card', () => {
+    let cardFixture =
+      { front: '# Front of card'
+      , back: '## Back of card'
+      , tags: ['react', 'angular']
+      , _id: '132ads4532'
+      }
+    var renderedCard = TestUtils.renderIntoDocument(
+      <CardPreview card={cardFixture}/>, document.body
+    );
+    // Expect there to be a link to correct edit url
+    var cardHTML = React.findDOMNode(renderedCard).innerHTML;
+    expect(cardHTML).toContain('/edit/' + cardFixture._id);
+  });
+
 });
