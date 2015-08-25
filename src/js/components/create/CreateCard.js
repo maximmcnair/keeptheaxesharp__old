@@ -32,17 +32,33 @@ class CreateCard extends React.Component {
     super();
     // Set initial state
     this.state =
-      { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }\n```'
-      , back: '```go\n// You can edit this code!\n// Click here and start typing.\npackage main\n\nimport "fmt"\n\nfunc main() {\n	fmt.Println("Hello, 世界")\n}\n```'
-      , answered: false
+      { front: ''
+      , back: ''
       , tags: []
+      , answered: false
+      , edit: false
       };
+
     // Bind this to functions
     this.onFrontChange = this.onFrontChange.bind(this);
     this.onBackChange = this.onBackChange.bind(this);
     this.createCard = this.createCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.updateTags = this.updateTags.bind(this);
+  }
+
+  componentDidMount () {
+    // Change edit state if props.id exists
+    if(this.props.id){
+      this.setState({edit: true});
+      CardService.getOne(this.props.id, function(error, card){
+        this.setState({
+          front: card.front
+        , back: card.back
+        , tags: card.tags
+        });
+      }.bind(this));
+    }
   }
 
   onFrontChange(e) {
