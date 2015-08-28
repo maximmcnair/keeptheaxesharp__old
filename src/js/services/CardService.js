@@ -13,7 +13,7 @@ let CardService =
       }, function(code, responseText) {
         // console.log('CardService.getAll response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        if(code === 200){
+        if(code === 200 || code === 201){
           cb(null, response);
         }else{
           cb(true);
@@ -27,7 +27,7 @@ let CardService =
       }, function(code, responseText) {
         // console.log('CardService.getAll response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        if(code === 200){
+        if(code === 200 || code === 201){
           cb(null, response);
         }else{
           cb(true);
@@ -40,9 +40,9 @@ let CardService =
       , body: Qs.stringify(data)
       , method: 'POST'
       }, function(code, responseText) {
-        // console.log('CardService.create response', code, JSON.parse(responseText));
+        console.log('CardService.create response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        if(code === 200){
+        if(code === 200 || code === 201){
           cb(null, response);
         }else{
           cb(true);
@@ -57,7 +57,7 @@ let CardService =
       }, function(code, responseText) {
         // console.log('CardService.update response', code, responseText);
         var response = JSON.parse(responseText);
-        if(code === 200){
+        if(code === 200 || code === 201){
           cb(null, response);
         }else{
           cb(true);
@@ -84,7 +84,7 @@ let CardService =
       }, function(code, responseText) {
         // console.log('CardService.getTags response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
-        if(code === 200){
+        if(code === 200 || code === 201){
           cb(null, response);
         }else{
           cb(true);
