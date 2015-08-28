@@ -7,6 +7,7 @@ import Tags from './components/tags/TagsView.js';
 import Landing from './components/landing/LandingView.js';
 import Create from './components/create/CreateCard.js';
 import CardList from './components/cards/CardList.js';
+import Onboarding from './components/onboarding/Onboarding.js';
 
 // Applicaton code
 var App = React.createClass({
@@ -20,6 +21,7 @@ var App = React.createClass({
     , '/create': 'create'
     , '/cards': 'cards'
     , '/edit/:id': 'edit'
+    , '/onboarding': 'onboarding'
     }
   , landing: function(){
       return (
@@ -49,6 +51,11 @@ var App = React.createClass({
   , cards: function(){
       return (
         <CardList></CardList>
+      );
+    }
+  , onboarding: function(){
+      return (
+        <Onboarding user={this.props.user}></Onboarding>
       );
     }
   , notFound: function() {

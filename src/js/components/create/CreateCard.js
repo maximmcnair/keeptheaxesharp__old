@@ -121,9 +121,9 @@ class CreateCard extends React.Component {
       var saveBtnContent = 'Create Card';
     }
 
+        // <a href="/cards" className="card-backToCards">Back to Cards</a>
     return (
       <div className="card-container">
-        <a href="/cards" className="card-backToCards">Back to Cards</a>
         <div className={cardClass}>
           <div className="card-front">
             <div className="card-content-wrapper">
