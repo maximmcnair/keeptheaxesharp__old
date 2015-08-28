@@ -6,7 +6,7 @@ var CardTags = React.createClass({
 
 , propTypes:
     { tags: React.PropTypes.array
-    , updateTags: React.PropTypes.function
+    , updateTags: React.PropTypes.func
     }
 
 , mixins: [React.addons.LinkedStateMixin]

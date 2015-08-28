@@ -40,7 +40,7 @@ let CardService =
       , body: Qs.stringify(data)
       , method: 'POST'
       }, function(code, responseText) {
-        console.log('CardService.create response', code, JSON.parse(responseText));
+        // console.log('CardService.create response', code, JSON.parse(responseText));
         var response = JSON.parse(responseText);
         if(code === 200 || code === 201){
           cb(null, response);

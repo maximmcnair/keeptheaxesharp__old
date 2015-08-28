@@ -141,7 +141,7 @@ class Review extends React.Component {
 }
 
 Review.propTypes = {
-  tags: React.PropTypes.array
+  tags: React.PropTypes.string
 };
 
 export default Review;

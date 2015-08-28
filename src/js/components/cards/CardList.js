@@ -44,6 +44,7 @@ export default class CardList extends React.Component {
       return (
         <CardPreview
           card={card}
+          key={card._id}
         ></CardPreview>
       );
     });

@@ -171,7 +171,7 @@ class CreateCard extends React.Component {
 }
 
 CreateCard.propTypes = {
-  answered: React.PropTypes.boolean
+  answered: React.PropTypes.bool
 , id: React.PropTypes.string
 };
 
