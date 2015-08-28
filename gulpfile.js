@@ -8,11 +8,16 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 
 /*
- * Copy index file
+ * Copy static files
  */
-// gulp.task('copy_index', function () {
-//   gulp.src('src/*.html').pipe(gulp.dest('public/'));
-// });
+gulp.task('copyStatics', function () {
+  gulp.src([
+    './src/fonts/**.*'
+  , './src/img/**.*'
+  , './src/css/**.*'
+  , './src/favicon.ico'
+], {base: './src'}).pipe(gulp.dest('public/assets'));
+});
 
 /*
  * Javascript building
@@ -29,25 +34,6 @@ gulp.task('browserify', function () {
     }))
     .on('error', gutil.log)
     .pipe(gulp.dest('public/assets/js/'));
-});
-
-/*
- * Javascript Testing
- */
-var mocha = require('gulp-mocha');
-var babel = require('babel/register');
-gulp.task('mocha', function () {
-  return gulp.src(
-    [ './test/testSpec.js'
-    , './test/*.js'
-    , './test/**/*.js'
-    ], {read: false})
-    .pipe(mocha({
-      reporter: 'nyan',
-      compilers: {
-        js: babel
-      }
-    }));
 });
 
 /*
@@ -97,10 +83,7 @@ gulp.task('webserver', function () {
 /*
  * Gulp user tasks
  */
-gulp.task('default', ['sass', 'browserify']);
-gulp.task('test', ['mocha']);
-// gulp.task('test', ['mocha', 'eslint']);
-
+gulp.task('default', ['copyStatics', 'sass', 'browserify', 'eslint']);
 gulp.task('compiled', ['default']);
 
 gulp.task('watch', function () {
@@ -108,12 +91,6 @@ gulp.task('watch', function () {
     'src/**/*.*',
     'src/**/**/*.*'
   ], ['default']);
-  gulp.watch([
-    'src/**/*.*',
-    'src/**/**/*.*',
-    'test/*.*',
-    'test/**/*.*'
-  ], ['test']);
 });
 
 gulp.task('dev', ['default', 'watch']);

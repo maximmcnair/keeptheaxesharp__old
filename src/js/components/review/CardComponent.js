@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 'use strict';
 
 import React from 'react';
@@ -91,10 +92,10 @@ class Card extends React.Component {
 
     // Generate card correct/wrong class
     var cardActionClass = 'card-action';
-    console.log('this.props.card.answeredCorrect', this.props.card.answeredCorrect);
+    // console.log('this.props.card.answeredCorrect', this.props.card.answeredCorrect);
     if(this.props.card.answeredCorrect === true) cardActionClass += ' is-correct';
     if(this.props.card.answeredCorrect === false) cardActionClass += ' is-wrong';
-    console.log('cardActionClass', cardActionClass);
+    // console.log('cardActionClass', cardActionClass);
     var frontHTML = {__html: md.render(this.props.card.front) };
     var backHTML = {__html: md.render(this.props.card.back)};
 

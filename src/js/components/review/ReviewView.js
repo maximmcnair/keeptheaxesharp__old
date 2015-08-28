@@ -9,7 +9,7 @@ import CardService from './../../services/CardService.js';
  * Review View
  * @extends {React.Component}
  */
-export default class Review extends React.Component {
+class Review extends React.Component {
   /**
    * @desc sets initial state
    */
@@ -31,9 +31,6 @@ export default class Review extends React.Component {
     this.scheduleNextViewing = this.scheduleNextViewing.bind(this);
   }
 
-  /**
-   * @desc assigns a baobab listener after component has been mounted
-   */
   componentDidMount () {
     var query =
       { tags: this.props.tags.split('&')
@@ -142,3 +139,9 @@ export default class Review extends React.Component {
   }
 
 }
+
+Review.propTypes = {
+  tags: React.PropTypes.string
+};
+
+export default Review;

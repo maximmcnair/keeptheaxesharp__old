@@ -10,12 +10,16 @@ import CardList from './components/cards/CardList.js';
 
 // Applicaton code
 var App = React.createClass({
-    mixins: [RouterMixin]
+    propTypes:
+    { user: React.PropTypes.object
+    }
+  , mixins: [RouterMixin]
   , routes: {
       '/': 'tags'
     , '/review/:tags': 'review'
     , '/create': 'create'
     , '/cards': 'cards'
+    , '/edit/:id': 'edit'
     }
   , landing: function(){
       return (
@@ -35,6 +39,11 @@ var App = React.createClass({
   , create: function(){
       return (
         <Create></Create>
+      );
+    }
+  , edit: function(id){
+      return (
+        <Create id={id}></Create>
       );
     }
   , cards: function(){

@@ -15,7 +15,8 @@ export default class Tags extends React.Component {
    */
   constructor () {
     super();
-    this.state = {tags: [], selected: [], url: '/review/'};
+    this.state = {tags: [], selected: []}
+    // , url: '/review/'};
   }
 
   /**
@@ -60,9 +61,9 @@ export default class Tags extends React.Component {
           >
             {this.state.tags.map(
               tag => {
-                if(this.state.selected.indexOf(tag) !== -1){
-                  console.log('active');
-                }
+                // if(this.state.selected.indexOf(tag) !== -1){
+                //   console.log('active');
+                // }
                 return (
                   <span key={tag}>
                     <input type="checkbox" value={tag} id={tag} className="checkbox"/>

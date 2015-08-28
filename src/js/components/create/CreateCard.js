@@ -16,7 +16,6 @@ require('codemirror/mode/sql/sql');
 require('codemirror/mode/clojure/clojure');
 require('codemirror/mode/perl/perl');
 
-//
 import CardService from './../../services/CardService.js';
 import TagsInput from './CardTags';
 var navigate = require('react-mini-router').navigate;
@@ -33,17 +32,33 @@ class CreateCard extends React.Component {
     super();
     // Set initial state
     this.state =
-      { front: '```javascript\n// Iterate through object properties\n\nvar obj =\n  { name: \"Pete\"\n  , age: \"20\"\n  }\n```'
-      , back: '```go\n// You can edit this code!\n// Click here and start typing.\npackage main\n\nimport "fmt"\n\nfunc main() {\n	fmt.Println("Hello, 世界")\n}\n```'
-      , answered: false
+      { front: ''
+      , back: ''
       , tags: []
+      , answered: false
+      , edit: false
       };
+
     // Bind this to functions
     this.onFrontChange = this.onFrontChange.bind(this);
     this.onBackChange = this.onBackChange.bind(this);
     this.createCard = this.createCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.updateTags = this.updateTags.bind(this);
+  }
+
+  componentDidMount () {
+    // Change edit state if props.id exists
+    if(this.props.id){
+      this.setState({edit: true});
+      CardService.getOne(this.props.id, function(error, card){
+        this.setState({
+          front: card.front
+        , back: card.back
+        , tags: card.tags
+        });
+      }.bind(this));
+    }
   }
 
   onFrontChange(e) {
@@ -55,16 +70,27 @@ class CreateCard extends React.Component {
   }
 
   createCard() {
-    var newCard =
+    var card =
       { front: this.state.front
       , back: this.state.back
       , tags: this.state.tags
       };
-    CardService.create(newCard, function(error){
-      if(!error){
-        navigate('/cards');
-      }
-    });
+
+    if(this.state.edit){
+      CardService.update(this.props.id, card, function(error){
+        console.log(error);
+        if(!error){
+          navigate('/cards');
+        }
+      });
+    }else{
+      CardService.create(card, function(error){
+        console.log(error);
+        if(!error){
+          navigate('/cards');
+        }
+      });
+    }
   }
 
   flipCard() {
@@ -89,8 +115,15 @@ class CreateCard extends React.Component {
       cardClass += ' is--answered';
     }
 
+    if(this.state.edit){
+      var saveBtnContent = 'Save Changes';
+    }else{
+      var saveBtnContent = 'Create Card';
+    }
+
     return (
       <div className="card-container">
+        <a href="/cards" className="card-backToCards">Back to Cards</a>
         <div className={cardClass}>
           <div className="card-front">
             <div className="card-content-wrapper">
@@ -125,7 +158,7 @@ class CreateCard extends React.Component {
             <footer className="card-action">
               <div className="u-textCenter">
                 <a className="card-action-save" onClick={this.createCard}>
-                  <span className="correct-text">Create card</span>
+                  <span className="correct-text">{saveBtnContent}</span>
                 </a>
               </div>
             </footer>
@@ -138,7 +171,8 @@ class CreateCard extends React.Component {
 }
 
 CreateCard.propTypes = {
-  answered: React.PropTypes.boolean
+  answered: React.PropTypes.bool
+, id: React.PropTypes.string
 };
 
 export default CreateCard;

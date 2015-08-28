@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 'use strict';
 
 import React from 'react';
@@ -74,15 +75,18 @@ class CardPreview extends React.Component {
         );
       });
 
-      tagComponent =
+      tagComponent = (
         <div className="cardPreview-tags">
           <div className="tags">
             <i className="fa fa-tags tags-icon"></i>
             <ul className="tags-list">{tagNodes}</ul>
           </div>
         </div>
-
+      )
     }
+
+    // Generate edit card url
+    var editCardUrl = '/edit/' + this.props.card._id
 
     return (
       <div className="cardPreview">
@@ -95,6 +99,7 @@ class CardPreview extends React.Component {
             {answerHTML}
           </div>
         </div>
+        <a href={editCardUrl}>Edit Card</a>
       </div>
     );
   }
