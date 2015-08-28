@@ -99,7 +99,7 @@ class CardPreview extends React.Component {
             {answerHTML}
           </div>
         </div>
-        <a href={editCardUrl}>Edit Card</a>
+        <a href={editCardUrl} className="cardPreview-edit"><i className="fa fa-pencil"></i></a>
       </div>
     );
   }
