@@ -8,8 +8,8 @@
     "url": "https://github.com/maximmcnair/keeptheaxesharp.git"
   },
   "scripts": {
-    "test": "karma start karma.conf.js"
-  , "start": "node ./backend/node/server.js | bunyan"
+    "test": "karma start karma.conf.js",
+    "start": "node ./backend/node/server.js | bunyan"
   },
   "author": "Maxim McNair",
   "bugs": {
@@ -27,6 +27,7 @@
     "react-checkbox-group": "^0.1.9",
     "react-code-mirror": "^3.0.4",
     "react-mini-router": "^1.1.7",
+    "react-mixin": "^1.7.0",
     "react-tagsinput": "^1.4.1"
   },
   "devDependencies": {

@@ -37,6 +37,11 @@ class CreateCard extends React.Component {
       , tags: []
       , answered: false
       , edit: false
+      , errors:
+        { front: null
+        , back: null
+        , tags: null
+        }
       };
 
     // Bind this to functions
@@ -45,6 +50,7 @@ class CreateCard extends React.Component {
     this.createCard = this.createCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.updateTags = this.updateTags.bind(this);
+    this.frontValid = this.frontValid.bind(this);
   }
 
   componentDidMount () {
@@ -76,30 +82,74 @@ class CreateCard extends React.Component {
       , tags: this.state.tags
       };
 
-    if(this.state.edit){
-      CardService.update(this.props.id, card, function(error){
-        if(!error){
-          navigate('/cards');
-        }else{
-          console.log(error);
-        }
-      });
-    }else{
-      CardService.create(card, function(error){
-        if(!error){
-          if(user && !user.onboarded) user.onboarded = true
-          navigate('/cards');
-        }else{
-          console.log(error);
-        }
-      });
+    // TODO write test
+    if(this.backValid()){
+      if(this.state.edit){
+        CardService.update(this.props.id, card, function(error){
+          if(!error){
+            navigate('/cards');
+          }else{
+            console.log(error);
+          }
+        });
+      }else{
+        CardService.create(card, function(error){
+          if(!error){
+            if(user && !user.onboarded) user.onboarded = true
+            navigate('/cards');
+          }else{
+            console.log(error);
+          }
+        });
+      }
     }
   }
 
+  // TODO write test
+  frontValid() {
+    var errors = this.state.errors
+    var frontValid = true;
+    if(this.state.front === ''){
+      errors.front = 'Content for front of card is required';
+      frontValid = false;
+    }else{
+      errors.front = null
+    }
+    if(this.state.tags.length < 1){
+      errors.tags = 'You must add at least one tag';
+      frontValid = false;
+    }else{
+      errors.tags = null
+    }
+    this.setState({errors: errors});
+    return frontValid;
+  }
+
+  // TODO write test
+  backValid() {
+    var errors = this.state.errors
+    var backValid = true;
+    if(this.state.back === ''){
+      errors.back = 'Content for back of card is required';
+      backValid = false;
+    }else{
+      errors.back = null
+    }
+    this.setState({errors: errors});
+    return backValid;
+  }
+
   flipCard() {
-    this.setState({
-      answered: !this.state.answered
-    });
+    // If flip from front
+    if(!this.state.answered && this.frontValid()){
+      this.setState({
+        answered: !this.state.answered
+      });
+    }else if(this.state.answered){
+      this.setState({
+        answered: !this.state.answered
+      });
+    }
   }
 
   updateTags(tags) {
@@ -118,6 +168,7 @@ class CreateCard extends React.Component {
       cardClass += ' is--answered';
     }
 
+    // Save button copy
     if(this.state.edit){
       var saveBtnContent = 'Save Changes';
     }else{
@@ -130,12 +181,14 @@ class CreateCard extends React.Component {
         <div className={cardClass}>
           <div className="card-front">
             <div className="card-content-wrapper">
+              <span className="error">{this.state.errors.front}</span>
               <CodeMirror
                 value={this.state.front}
                 mode='gfm'
                 theme='default'
                 onChange={this.onFrontChange}
               ></CodeMirror>
+              <span className="error">{this.state.errors.tags}</span>
               <TagsInput tags={this.state.tags} updateTags={this.updateTags}></TagsInput>
             </div>
             <div className="u-textCenter card-btn-wrapper">
@@ -147,6 +200,7 @@ class CreateCard extends React.Component {
           </div>
           <div className="card-back answer">
             <div className="card-content-wrapper">
+              <span className="error">{this.state.errors.back}</span>
               <CodeMirror
                 value={this.state.back}
                 mode='gfm'
