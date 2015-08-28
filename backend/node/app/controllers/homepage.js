@@ -17,19 +17,25 @@ module.exports = function (app, options) {
       };
 
     // Get latest user model rather than session
-    options.connection.model('User').findById(req.user.id, function(error, document){
-      if(!error){
-        if(document){
-          user.str = JSON.stringify( document );
-          // user.obj = user;
+    if(req.user){
+      options.connection.model('User').findById(req.user.id, function(error, document){
+        if(!error){
+          if(document){
+            user.str = JSON.stringify( document );
+            // user.obj = user;
+          }
+
+          // Render user object
+          html = html.replace('{{user}}', user.str );
+
+          res.send(html);
         }
-
-        // Render user object
-        html = html.replace('{{user}}', user.str );
-
-        res.send(html);
-      }
-    })
+      })
+    }else{
+      // Render user object
+      html = html.replace('{{user}}', user.str );
+      res.send(html);
+    }
   });
 
 };
