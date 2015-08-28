@@ -53,11 +53,6 @@ var App = React.createClass({
         <CardList></CardList>
       );
     }
-  , onboarding: function(){
-      return (
-        <Onboarding user={this.props.user}></Onboarding>
-      );
-    }
   , notFound: function() {
       return this.landing();
     }
@@ -77,7 +72,7 @@ var App = React.createClass({
           break;
       }
 
-      if(this.props.user){
+      if(this.props.user && this.props.user.onboarded){
         return (
           <div>
             <div className="header-wrapper">
@@ -98,6 +93,10 @@ var App = React.createClass({
               </div>
             </section>
           </div>
+        );
+      }else if(this.props.user){
+        return (
+          <Onboarding user={this.props.user}></Onboarding>
         );
       }else{
         return this.landing();

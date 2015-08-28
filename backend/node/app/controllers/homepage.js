@@ -1,39 +1,35 @@
 var fs = require('fs')
   , path = require('path');
 
-module.exports = function (app) {
-
-  // function createUserObject(githubUser){
-  //   var userObject =
-  //     { id: githubUser.id
-  //     , username: githubUser.username
-  //     , name: githubUser.displayName
-  //     , email: githubUser.emails[0].value
-  //   };
-  //   return userObject;
-  // }
+module.exports = function (app, options) {
 
   /*
    * Views
   */
   app.get('*', function(req, res){
+    // Get index template
     var html = fs.readFileSync(path.join(__dirname, '/../../views/index.html'), 'utf8');
 
     // Create user object
     var user =
       { str: null
-      , obj: null
-    };
+      // , obj: null
+      };
 
-    if(req.user){
-      user.str = JSON.stringify( req.user );
-      user.obj = req.user;
-    }
+    // Get latest user model rather than session
+    options.connection.model('User').findById(req.user.id, function(error, document){
+      if(!error){
+        if(document){
+          user.str = JSON.stringify( document );
+          // user.obj = user;
+        }
 
-    // Render user object
-    html = html.replace('{{user}}', user.str );
+        // Render user object
+        html = html.replace('{{user}}', user.str );
 
-    res.send(html);
+        res.send(html);
+      }
+    })
   });
 
 };

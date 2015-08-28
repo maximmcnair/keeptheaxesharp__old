@@ -3,7 +3,9 @@
  */
 
 var crudApi = require('../../lib/api/crud')
-  , ensureAuthorized = require('../../lib/middleware/auth');
+  , ensureAuthorized = require('../../lib/middleware/auth')
+  , postParser = require('../../lib/middleware/post-parser')
+  , errorMapper = require('../../lib/mongoose/error-mapper');
 
 module.exports = function (app, options) {
   var logger = options.logger
@@ -24,6 +26,35 @@ module.exports = function (app, options) {
     })
   })
 
+  /* Override post */
+  app.post(prefix + '/', postParser(), function (req, res) {
+    logger.debug('Creating new ' + model + ' document')
+    var newDocument = new Model(req.body)
+    newDocument.userId = req.user.id
+
+    newDocument.save(function (error, document) {
+      // Turn onboarding off if user has gone through it
+      if(req.user.onboarded === false){
+        options.connection.model('User').findById(req.user.id, function(error, user){
+          if(!error){
+            user.onboarded = true;
+            user.save(function (error) {
+              if(error) logger.error(error);
+            });
+          }
+        })
+      }
+      if (error) {
+        logger.debug('Error creating new ' + model + ' document', error)
+        res.json(400, errorMapper(error))
+      } else {
+        logger.debug('New ' + model + ' document created')
+        res.json(201, document)
+      }
+    })
+  })
+
+  /* setup crud */
   crudApi(app, prefix, model, options, ensureAuthorized(logger));
 
   app.get('/api/tags', function (req, res) {

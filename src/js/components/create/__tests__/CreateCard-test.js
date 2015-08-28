@@ -65,9 +65,9 @@ describe('CreateCardComponent', () => {
     // Simulate use clicking create btn
     TestUtils.Simulate.click(flipCardBackBtn);
     // Expect Card service to be called with correct content
-    expect(mockCardService.create.getCall(0).args[0].front).toEqual('Front of card')
-    expect(mockCardService.create.getCall(0).args[0].back).toEqual('Back of card')
-    expect(mockCardService.create.getCall(0).args[0].tags).toEqual(['javascript', 'go'])
+    expect(mockCardService.create.getCall(0).args[0].front).toEqual('Front of card');
+    expect(mockCardService.create.getCall(0).args[0].back).toEqual('Back of card');
+    expect(mockCardService.create.getCall(0).args[0].tags).toEqual(['javascript', 'go']);
   });
 
   // TODO - Add tests for tags updating state

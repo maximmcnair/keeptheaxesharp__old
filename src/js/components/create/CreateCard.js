@@ -85,8 +85,8 @@ class CreateCard extends React.Component {
       });
     }else{
       CardService.create(card, function(error){
-        console.log(error);
         if(!error){
+          if(user && !user.onboarded) user.onboarded = true
           navigate('/cards');
         }
       });
@@ -173,6 +173,7 @@ class CreateCard extends React.Component {
 CreateCard.propTypes = {
   answered: React.PropTypes.bool
 , id: React.PropTypes.string
+, onboarding: React.PropTypes.bool
 };
 
 export default CreateCard;

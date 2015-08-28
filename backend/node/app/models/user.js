@@ -25,6 +25,10 @@ module.exports = function (logger, connection) {
       , provider:
         { type: String
         }
+      , onboarded:
+        { type: Boolean
+        , default: false
+        }
       , github:
         { type: Schema.Types.Mixed
         }
