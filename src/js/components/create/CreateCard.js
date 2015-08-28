@@ -78,9 +78,10 @@ class CreateCard extends React.Component {
 
     if(this.state.edit){
       CardService.update(this.props.id, card, function(error){
-        console.log(error);
         if(!error){
           navigate('/cards');
+        }else{
+          console.log(error);
         }
       });
     }else{
@@ -88,6 +89,8 @@ class CreateCard extends React.Component {
         if(!error){
           if(user && !user.onboarded) user.onboarded = true
           navigate('/cards');
+        }else{
+          console.log(error);
         }
       });
     }
