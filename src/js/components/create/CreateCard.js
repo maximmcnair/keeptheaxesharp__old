@@ -172,6 +172,7 @@ class CreateCard extends React.Component {
 
 CreateCard.propTypes = {
   answered: React.PropTypes.boolean
+, id: React.PropTypes.string
 };
 
 export default CreateCard;

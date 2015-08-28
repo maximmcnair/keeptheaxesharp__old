@@ -2,11 +2,16 @@ var React = require('react/addons');
 var TagsInput = require('react-tagsinput');
 
 var CardTags = React.createClass({
-  displayName: 'TagsComponent',
+  displayName: 'TagsComponent'
 
-  mixins: [React.addons.LinkedStateMixin],
+, propTypes:
+    { tags: React.PropTypes.array
+    , updateTags: React.PropTypes.function
+    }
 
-  getInitialState: function () {
+, mixins: [React.addons.LinkedStateMixin]
+
+, getInitialState: function () {
     return {
       tags: this.props.tags
     };
@@ -17,9 +22,9 @@ var CardTags = React.createClass({
       tags: tags
     });
     this.props.updateTags(tags);
-  },
+  }
 
-  render: function () {
+, render: function () {
     return (
       <div>
         <TagsInput

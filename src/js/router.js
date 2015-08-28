@@ -10,7 +10,10 @@ import CardList from './components/cards/CardList.js';
 
 // Applicaton code
 var App = React.createClass({
-    mixins: [RouterMixin]
+    propTypes:
+    { user: React.PropTypes.object
+    }
+  , mixins: [RouterMixin]
   , routes: {
       '/': 'tags'
     , '/review/:tags': 'review'

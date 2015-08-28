@@ -9,7 +9,7 @@ import CardService from './../../services/CardService.js';
  * Review View
  * @extends {React.Component}
  */
-export default class Review extends React.Component {
+class Review extends React.Component {
   /**
    * @desc sets initial state
    */
@@ -139,3 +139,9 @@ export default class Review extends React.Component {
   }
 
 }
+
+Review.propTypes = {
+  tags: React.PropTypes.array
+};
+
+export default Review;
