@@ -8,6 +8,7 @@ import Landing from './components/landing/LandingView.js';
 import Create from './components/create/CreateCard.js';
 import CardList from './components/cards/CardList.js';
 import Onboarding from './components/onboarding/Onboarding.js';
+import Demo from './components/demo/Demo.js';
 
 // Applicaton code
 var App = React.createClass({
@@ -21,7 +22,7 @@ var App = React.createClass({
     , '/create': 'create'
     , '/cards': 'cards'
     , '/edit/:id': 'edit'
-    , '/onboarding': 'onboarding'
+    , '/demo': 'demo'
     }
   , landing: function(){
       return (
@@ -53,6 +54,11 @@ var App = React.createClass({
         <CardList></CardList>
       );
     }
+  , demo: function(){
+      return (
+        <Demo></Demo>
+      );
+    }
   , notFound: function() {
       return this.landing();
     }
@@ -72,7 +78,15 @@ var App = React.createClass({
           break;
       }
 
-      if(this.props.user && this.props.user.onboarded){
+      if(this.state.path === '/demo'){
+        return (
+          <section className="content">
+            <div className="body">
+              {this.renderCurrentRoute()}
+            </div>
+          </section>
+        );
+      }else if(this.props.user && this.props.user.onboarded){
         return (
           <div>
             <div className="header-wrapper">

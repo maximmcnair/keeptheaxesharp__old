@@ -32,31 +32,36 @@ class Review extends React.Component {
   }
 
   componentDidMount () {
-    var query =
-      { tags: this.props.tags.split('&')
-      };
+    // Has tags (logged in user)
+    if(this.props.tags){
+      var query =
+        { tags: this.props.tags.split('&')
+        };
 
-    console.log('review',  query);
+      console.log('review',  query);
 
-    CardService.getAll(query, (error, response) => {
-      console.log('cards', response);
-      // Log error
-      if(error){
-        console.error(error);
-      }else{
-        // Loop through cards and add answer variable
-        var cards = response.map(function(card){
-          card.answeredCorrect = null;
-          card.answered = false;
-          return card;
-        });
+      CardService.getAll(query, (error, response) => {
+        console.log('cards', response);
+        // Log error
+        if(error){
+          console.error(error);
+        }else{
+          // Loop through cards and add answer variable
+          var cards = response.map(function(card){
+            card.answeredCorrect = null;
+            card.answered = false;
+            return card;
+          });
 
-        // Set cards to state
-        this.setState({
-          cards: cards
-        });
-      }
-    });
+          // Set cards to state
+          this.setState({
+            cards: cards
+          });
+        }
+      });
+    }else if(this.props.cards){
+      this.setState({cards: this.props.cards});
+    }
   }
 
   showNextCard() {
@@ -142,6 +147,7 @@ class Review extends React.Component {
 
 Review.propTypes = {
   tags: React.PropTypes.string
+, cards: React.PropTypes.array
 };
 
 export default Review;
