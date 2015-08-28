@@ -3,15 +3,15 @@ var fs = require('fs')
 
 module.exports = function (app) {
 
-  function createUserObject(githubUser){
-    var userObject =
-      { id: githubUser.id
-      , username: githubUser.username
-      , name: githubUser.displayName
-      , email: githubUser.emails[0].value
-    };
-    return userObject;
-  }
+  // function createUserObject(githubUser){
+  //   var userObject =
+  //     { id: githubUser.id
+  //     , username: githubUser.username
+  //     , name: githubUser.displayName
+  //     , email: githubUser.emails[0].value
+  //   };
+  //   return userObject;
+  // }
 
   /*
    * Views
@@ -26,8 +26,8 @@ module.exports = function (app) {
     };
 
     if(req.user){
-      user.str = JSON.stringify( createUserObject(req.user) );
-      user.obj = createUserObject(req.user);
+      user.str = JSON.stringify( req.user );
+      user.obj = req.user;
     }
 
     // Render user object

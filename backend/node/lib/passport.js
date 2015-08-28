@@ -2,7 +2,8 @@ var GitHubStrategy = require('passport-github').Strategy;
 
 module.exports = function(passport, connection, options){
   var logger = options.logger
-    , properties = options.properties;
+    , properties = options.properties
+    , User = connection.model('User');
 
   logger.info('Setting up passport');
 
@@ -33,12 +34,31 @@ module.exports = function(passport, connection, options){
     function(accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
       process.nextTick(function () {
-
+        User.findOne({
+          'github.id': profile.id
+        }, function (err, user) {
+          if (!user) {
+            user = new User({
+              name: profile.displayName
+            , email: profile.emails[0].value
+            , username: profile.username
+            , provider: 'github'
+            , github: profile._json
+            })
+            console.log('New User', user);
+            user.save(function (err) {
+              if (err) logger.error(err)
+              return done(err, user)
+            })
+          } else {
+            return done(err, user)
+          }
+        })
         // To keep the example simple, the user's GitHub profile is returned to
         // represent the logged-in user.  In a typical application, you would want
         // to associate the GitHub account with a user record in your database,
         // and return that user instead.
-        return done(null, profile);
+        // return done(null, profile);
       });
     }
   ));

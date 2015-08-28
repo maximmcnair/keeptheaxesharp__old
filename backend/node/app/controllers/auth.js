@@ -6,7 +6,7 @@ module.exports = function (app, options, passport) {
   //   back to this application at /auth/github/callback
   app.get('/auth/github',
     passport.authenticate('github'),
-    function(){
+    function(accessToken, refreshToken, profile, done){
       // The request will be redirected to GitHub for authentication, so this
       // function will not be called.
     });

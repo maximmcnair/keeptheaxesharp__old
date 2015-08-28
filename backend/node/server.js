@@ -23,6 +23,7 @@ var connection = mongoose.createConnection(properties.db, properties.dbOptions)
 connection.once('open', function connectionOpen() {
   // Bootstrap models
   [ 'card'
+  , 'user'
   ].forEach(function (model) {
     require(path.join(__dirname, '/app/models/' + model))(logger, connection);
   });
