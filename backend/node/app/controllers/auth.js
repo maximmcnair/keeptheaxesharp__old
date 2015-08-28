@@ -17,7 +17,7 @@ module.exports = function (app, options, passport) {
   //   login page.  Otherwise, the primary route function function will be called,
   //   which, in this example, will redirect the user to the home page.
   app.get('/auth/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
+    passport.authenticate('github', { failureRedirect: '/' }),
     function(req, res) {
       res.redirect('/');
     });
