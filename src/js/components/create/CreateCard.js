@@ -70,16 +70,27 @@ class CreateCard extends React.Component {
   }
 
   createCard() {
-    var newCard =
+    var card =
       { front: this.state.front
       , back: this.state.back
       , tags: this.state.tags
       };
-    CardService.create(newCard, function(error){
-      if(!error){
-        navigate('/cards');
-      }
-    });
+
+    if(this.state.edit){
+      CardService.update(this.props.id, card, function(error){
+        console.log(error);
+        if(!error){
+          navigate('/cards');
+        }
+      });
+    }else{
+      CardService.create(card, function(error){
+        console.log(error);
+        if(!error){
+          navigate('/cards');
+        }
+      });
+    }
   }
 
   flipCard() {
@@ -102,6 +113,12 @@ class CreateCard extends React.Component {
     var cardClass = 'card card-current';
     if(this.state.answered){
       cardClass += ' is--answered';
+    }
+
+    if(this.state.edit){
+      var saveBtnContent = 'Save Changes';
+    }else{
+      var saveBtnContent = 'Create Card';
     }
 
     return (
@@ -140,7 +157,7 @@ class CreateCard extends React.Component {
             <footer className="card-action">
               <div className="u-textCenter">
                 <a className="card-action-save" onClick={this.createCard}>
-                  <span className="correct-text">Create card</span>
+                  <span className="correct-text">{saveBtnContent}</span>
                 </a>
               </div>
             </footer>

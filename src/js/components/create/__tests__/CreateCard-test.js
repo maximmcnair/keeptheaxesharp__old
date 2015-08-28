@@ -13,36 +13,15 @@ describe('CreateCardComponent', () => {
   var CreateCard;
   var React = require('react');
   var TestUtils = require('react/lib/ReactTestUtils');
+  let CardFixture =
+    { front: 'front'
+    , back: 'back'
+    , tags: ['node', 'react']
+    };
 
   beforeEach(() => {
     CreateCard = require('../CreateCard');
     CreateCard.__Rewire__('CardService', mockCardService);
-  });
-
-  it('if an id is defined in props then `state.edit` should be true', () => {
-    var _id = 'asd1';
-    const el = TestUtils.renderIntoDocument(<CreateCard id={_id}/>);
-    // Expect `state.edit` to be true
-    expect(el.state.edit).toBeTruthy();
-  });
-
-  it('if an edit is defined in props, it should get data for that card and populate view', () => {
-    let CardFixture =
-      { front: 'front'
-      , back: 'back'
-      , tags: ['node', 'react']
-    };
-    mockCardService.getOne.yields(null, CardFixture);
-    var _id = 'asd1';
-    const el = TestUtils.renderIntoDocument(<CreateCard id={_id}/>);
-    // Expect getOne service to be called
-    expect(mockCardService.getOne.called).toBeTruthy();
-    // Expect state.front to be correct
-    expect(el.state.front).toEqual(CardFixture.front);
-    // Expect state.back to be correct
-    expect(el.state.back).toEqual(CardFixture.back);
-    // Expect state.tags to be correct
-    expect(el.state.tags).toEqual(CardFixture.tags);
   });
 
   it('should initially show front of card and allow user to flip card to back and then to front', () => {
@@ -80,8 +59,10 @@ describe('CreateCardComponent', () => {
     , back: 'Back of card'
     , tags: ['javascript', 'go']
     });
-    // Simulate use clicking create btn
     var flipCardBackBtn = TestUtils.findRenderedDOMComponentWithClass(el, 'card-action-save');
+    // Expect flipCardBackBtn to have correct content
+    expect(flipCardBackBtn.getDOMNode().innerHTML).toContain('Create Card');
+    // Simulate use clicking create btn
     TestUtils.Simulate.click(flipCardBackBtn);
     // Expect Card service to be called with correct content
     expect(mockCardService.create.getCall(0).args[0].front).toEqual('Front of card')
