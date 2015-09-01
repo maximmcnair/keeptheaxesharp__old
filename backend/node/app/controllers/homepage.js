@@ -31,6 +31,8 @@ module.exports = function (app, options) {
           res.send(html);
         }else{
           console.log(error);
+          html = html.replace('{{user}}', user.str );
+          res.send(html);
         }
       })
     }else{
