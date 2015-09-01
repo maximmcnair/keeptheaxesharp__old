@@ -79,13 +79,7 @@ var App = React.createClass({
       }
 
       if(this.state.path === '/demo'){
-        return (
-          <section className="content">
-            <div className="body">
-              {this.renderCurrentRoute()}
-            </div>
-          </section>
-        );
+        return this.demo();
       }else if(this.props.user && this.props.user.onboarded){
         return (
           <div>

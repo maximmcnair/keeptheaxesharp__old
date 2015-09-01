@@ -27,8 +27,7 @@ export default class Demo extends React.Component {
             <div className="landing-logo">
               <span className="landing-logo-text">Keep The Axe Sharp</span>
             </div>
-            <a href="/auth/github" className="btn landing-auth">Login with Github to start Creating Cards</a>
-            <small className="landing-cards-small">It&#39;s free</small>
+            <a href="/auth/github">Login with Github to start Creating Cards</a>
           </div>
         </section>
         <ReviewView cards={CardsFixture}></ReviewView>
