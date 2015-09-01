@@ -31,6 +31,9 @@ class Review extends React.Component {
     this.scheduleNextViewing = this.scheduleNextViewing.bind(this);
   }
 
+  /**
+   * @desc gets correct cards from tags defined in props
+   */
   componentDidMount () {
     var query =
       { tags: this.props.tags.split('&')
@@ -59,6 +62,9 @@ class Review extends React.Component {
     });
   }
 
+  /**
+   * @desc show next card in list
+   */
   showNextCard() {
     // Increase currentCard
     this.setState({currentCard: this.state.currentCard + 1});
@@ -66,6 +72,9 @@ class Review extends React.Component {
     if(this.state.cards.length === this.state.currentCard) this.setState({finished: true});
   }
 
+  /**
+   * @desc flips cards over to see back/front
+   */
   flipCard() {
     // Copy state.cards to avoid mutating state
     var cardArray = this.state.cards;
@@ -75,6 +84,10 @@ class Review extends React.Component {
     this.setState({cards: cardArray});
   }
 
+  /**
+   * @desc deals with the timing of changing the state for the animation, also updates total scores
+   * @param {Boolean} answeredCorrect Was the card answered correct or not
+   */
   scheduleNextViewing(answeredCorrect) {
     // Copy state.cards to avoid mutating state
     var cardArray = this.state.cards;

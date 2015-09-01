@@ -53,6 +53,9 @@ class CreateCard extends React.Component {
     this.frontValid = this.frontValid.bind(this);
   }
 
+  /**
+   * @desc if an id is defined in props get that card's data from the CardService
+   */
   componentDidMount () {
     // Change edit state if props.id exists
     if(this.props.id){
@@ -67,14 +70,25 @@ class CreateCard extends React.Component {
     }
   }
 
+  /**
+   * @desc update front of card's value
+   * @param {SytheticEvent} e
+   */
   onFrontChange(e) {
     this.setState({front: e.target.value});
   }
 
+  /**
+   * @desc update back of card's value
+   * @param {SytheticEvent} e
+   */
   onBackChange(e) {
     this.setState({back: e.target.value});
   }
 
+  /**
+   * @desc create card with state data
+   */
   createCard() {
     var card =
       { front: this.state.front
@@ -105,7 +119,10 @@ class CreateCard extends React.Component {
     }
   }
 
-  // TODO write test
+  /**
+   * @desc Check front and tags of card are valid
+   * @return {Boolean} frontValid
+   */
   frontValid() {
     var errors = this.state.errors
     var frontValid = true;
@@ -125,7 +142,10 @@ class CreateCard extends React.Component {
     return frontValid;
   }
 
-  // TODO write test
+  /**
+   * @desc Check back of card is valid
+   * @return {Boolean} backValid
+   */
   backValid() {
     var errors = this.state.errors
     var backValid = true;
@@ -139,6 +159,9 @@ class CreateCard extends React.Component {
     return backValid;
   }
 
+  /**
+   * @desc flip card over
+   */
   flipCard() {
     // If flip from front
     if(!this.state.answered && this.frontValid()){
@@ -152,6 +175,10 @@ class CreateCard extends React.Component {
     }
   }
 
+  /**
+   * @desc update tag state
+   * @param {array} tags
+   */
   updateTags(tags) {
     this.setState({
       tags: tags

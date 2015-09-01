@@ -15,14 +15,17 @@ export default class CardList extends React.Component {
    */
   constructor () {
     super();
-    // Set state
+    /**
+     * @type {object}
+     * @property {array} cards Cards shown in view
+     */
     this.state =
       { cards: []
       };
   }
 
   /**
-   * @desc assigns a baobab listener after component has been mounted
+   * @desc gets cards from service after component has been mounted
    */
   componentDidMount () {
     CardService.getAll({}, (error, cards) => {
@@ -36,7 +39,8 @@ export default class CardList extends React.Component {
   }
 
   /**
-   * @returns {XML}
+   * render
+   * @return {ReactElement} markup
    */
   render() {
     // Generate card nodes from cards in state
