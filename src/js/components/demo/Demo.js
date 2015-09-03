@@ -24,13 +24,15 @@ export default class Demo extends React.Component {
       <div>
         <section className="landing">
           <div className="landing-intro">
-            <div className="landing-logo">
+            <div className="demo-logo">
               <span className="landing-logo-text">Keep The Axe Sharp</span>
             </div>
-            <a href="/auth/github">Login with Github to start Creating Cards</a>
           </div>
         </section>
         <ReviewView cards={CardsFixture}></ReviewView>
+        <div className="u-textCenter">
+          <a href="/auth/github" className="btn btn-sm">Login with Github to start Creating Cards</a>
+        </div>
       </div>
     );
   }
