@@ -1,0 +1,79 @@
+.cardScore
+  text-align: center
+  margin-top: 45px
+
+.cardScore-Correct,
+.cardScore-Wrong
+  width: 106px
+  display: inline-block
+  margin: 0px 15px
+
+.cardScore-iconContainer
+  width: 106px
+  height: 106px
+  display: block
+  border-radius: 50%
+  border: 3px solid transparent
+  text-align: center
+  overflow: hidden
+  position: relative
+
+i.cardScore-iconContainer__icon,
+.cardScore-iconContainer__amount
+  display: block
+  position: absolute
+  top: 33px
+  left: 0px
+  right: 0px
+  text-align: center
+  font-size: 35px
+
+.cardScore-iconContainer__amount
+  font-size: 28px
+  font-weight: 600
+
+.cardScore-type
+  text-align: center
+  font-size: 18px
+  display: block
+  margin-top: 10px
+
+.cardScore-Correct
+  color: $color-success
+  .cardScore-iconContainer
+    border-color: $color-success
+
+.cardScore-Wrong
+  color: $color-danger
+  .cardScore-iconContainer
+    border-color: $color-danger
+
++keyframes(scoreAnimateOut)
+  0%
+    @include transform( translate3d(0px, 0px, 0px) )
+  100%
+    @include transform( translate3d(0px, -100px, 0px) )
+
++keyframes(scoreAnimateIn)
+  0%
+    @include transform( translate3d(0px, 100px, 0px) )
+  100%
+    @include transform( translate3d(0px, 0px, 0px) )
+
+i.cardScore-iconContainer__icon
+  @include animation( scoreAnimateOut 1s .5s)
+  @include animation-fill-mode(forwards)
+
+.cardScore-iconContainer__amount
+  @include transform( translate3d(0px, 100px, 0px) )
+  @include animation( scoreAnimateIn 1s .5s)
+  @include animation-fill-mode(forwards)
+
+
+.cardScore-Wrong
+  i.cardScore-iconContainer__icon
+    @include animation( scoreAnimateOut 1s 1.4s)
+    @include animation-fill-mode(forwards)
+  .cardScore-iconContainer__amount
+    @include animation( scoreAnimateIn 1s 1.4s)
+    @include animation-fill-mode(forwards)

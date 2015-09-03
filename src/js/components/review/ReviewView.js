@@ -2,8 +2,10 @@
 
 import React from 'react';
 import CardComponent from './CardComponent.js';
+import ScoreComponent from './ScoreComponent.js';
 
 import CardService from './../../services/CardService.js';
+
 
 /**
  * Review View
@@ -102,37 +104,25 @@ class Review extends React.Component {
   */
   render() {
     // Generate card nodes from cards in state
-    var cardNodes = this.state.cards.map(function(card, index){
-      return (
-        <CardComponent
-          card={card}
-          key={card._id}
-          cardIndex={index}
-          flipCard={this.flipCard.bind(this)}
-          currentCard={this.state.currentCard}
-          markCardCorrect={this.scheduleNextViewing}
-        ></CardComponent>
-      );
-    }.bind(this));
+    var cardNodes = []
+    // this.state.cards.map(function(card, index){
+    //   return (
+    //     <CardComponent
+    //       card={card}
+    //       key={card._id}
+    //       cardIndex={index}
+    //       flipCard={this.flipCard.bind(this)}
+    //       currentCard={this.state.currentCard}
+    //       markCardCorrect={this.scheduleNextViewing}
+    //     ></CardComponent>
+    //   );
+    // }.bind(this));
 
     // If finished then render message
-    if(this.state.finished){
+    // if(this.state.finished){
+    if(true){
       cardNodes.push(
-        <div className="cardScore">
-
-          <div className="cardScore-stats">
-            <div className="cardScore-stat cardScore-stat-correct">
-              <h4 className="cardScore-stat-title">Correct</h4>
-              <h4 className="cardScore-stat-score">{this.state.scoreCorrect}</h4>
-            </div>
-            <div className="cardScore-stat cardScore-stat-wrong">
-              <h4 className="cardScore-stat-title">Wrong</h4>
-              <h4 className="cardScore-stat-score">{this.state.scoreWrong}</h4>
-            </div>
-          </div>
-
-          <a href="/tags" className="cardScore-reviewMore">Review more cards</a>
-        </div>
+        <ScoreComponent></ScoreComponent>
       );
     }
 
