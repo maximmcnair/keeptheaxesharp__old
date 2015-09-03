@@ -29,8 +29,12 @@ export default class Landing extends React.Component {
           <h2 className="landing-title">Ever find yourself on the same Stack Overflow answer time and time again?</h2>
           <p className="landing-desc">Keep The Axe Sharp uses flashcards and a repetition spaced learning algorithm to help programmers commit easy forgotten patterns, edge cases and shortcuts to memory.</p>
           <p className="landing-desc">We support over 20 language syntaxes for our cards, including Ruby, C, C#, Go, Javascript, CoffeeScript, CSS, PHP, Java, Python, SQL, Perl and Clojure.</p>
-          <a href="/demo" className="btn landing-demo">Try Demo</a>
-          <a href="/auth/github" className="btn landing-auth">Login with Github to start Creating Cards</a>
+          <div>
+            <a href="/auth/github" className="btn landing-auth">Login with Github to start Creating Cards</a>
+          </div>
+          <div>
+            <a href="/demo" className="btn btn-sm landing-demo">Try Demo</a>
+          </div>
         </div>
         <div className="landing-cards-overlay"></div>
         <section className="landing-cards">
