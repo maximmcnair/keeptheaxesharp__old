@@ -105,24 +105,23 @@ class Review extends React.Component {
   render() {
     // Generate card nodes from cards in state
     var cardNodes = []
-    // this.state.cards.map(function(card, index){
-    //   return (
-    //     <CardComponent
-    //       card={card}
-    //       key={card._id}
-    //       cardIndex={index}
-    //       flipCard={this.flipCard.bind(this)}
-    //       currentCard={this.state.currentCard}
-    //       markCardCorrect={this.scheduleNextViewing}
-    //     ></CardComponent>
-    //   );
-    // }.bind(this));
+    this.state.cards.map(function(card, index){
+      return (
+        <CardComponent
+          card={card}
+          key={card._id}
+          cardIndex={index}
+          flipCard={this.flipCard.bind(this)}
+          currentCard={this.state.currentCard}
+          markCardCorrect={this.scheduleNextViewing}
+        ></CardComponent>
+      );
+    }.bind(this));
 
     // If finished then render message
-    // if(this.state.finished){
-    if(true){
+    if(this.state.finished){
       cardNodes.push(
-        <ScoreComponent></ScoreComponent>
+        <ScoreComponent correct={this.state.scoreCorrect} wrong={this.state.scoreWrong}></ScoreComponent>
       );
     }
 

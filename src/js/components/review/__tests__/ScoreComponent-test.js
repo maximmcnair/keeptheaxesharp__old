@@ -16,9 +16,12 @@ describe('ScoreComponentComponent', () => {
   });
 
   it('should display the correct scores', () => {
-    // const el = TestUtils.renderIntoDocument(<ScoreComponent correct={1} wrong={2}/>);
+    const el = TestUtils.renderIntoDocument(<ScoreComponent correct={1} wrong={2}/>);
     // back should be rendered as html
-    // expect( React.findDOMNode(el).innerHTML ).toContain('');
+    var correctScore = TestUtils.findRenderedDOMComponentWithClass(el, 'cardScore-Correct-iconContainer__amount');
+    expect( React.findDOMNode(correctScore).innerHTML ).toEqual('1');
+    var correctWrong = TestUtils.findRenderedDOMComponentWithClass(el, 'cardScore-Wrong-iconContainer__amount');
+    expect( React.findDOMNode(correctWrong).innerHTML ).toContain('2');
   });
 
 });
