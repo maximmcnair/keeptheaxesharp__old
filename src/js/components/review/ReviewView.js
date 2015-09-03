@@ -2,8 +2,10 @@
 
 import React from 'react';
 import CardComponent from './CardComponent.js';
+import ScoreComponent from './ScoreComponent.js';
 
 import CardService from './../../services/CardService.js';
+
 
 /**
  * Review View
@@ -35,31 +37,36 @@ class Review extends React.Component {
    * @desc gets correct cards from tags defined in props
    */
   componentDidMount () {
-    var query =
-      { tags: this.props.tags.split('&')
-      };
+    // Has tags (logged in user)
+    if(this.props.tags){
+      var query =
+        { tags: this.props.tags.split('&')
+        };
 
-    console.log('review',  query);
+      console.log('review',  query);
 
-    CardService.getAll(query, (error, response) => {
-      console.log('cards', response);
-      // Log error
-      if(error){
-        console.error(error);
-      }else{
-        // Loop through cards and add answer variable
-        var cards = response.map(function(card){
-          card.answeredCorrect = null;
-          card.answered = false;
-          return card;
-        });
+      CardService.getAll(query, (error, response) => {
+        console.log('cards', response);
+        // Log error
+        if(error){
+          console.error(error);
+        }else{
+          // Loop through cards and add answer variable
+          var cards = response.map(function(card){
+            card.answeredCorrect = null;
+            card.answered = false;
+            return card;
+          });
 
-        // Set cards to state
-        this.setState({
-          cards: cards
-        });
-      }
-    });
+          // Set cards to state
+          this.setState({
+            cards: cards
+          });
+        }
+      });
+    }else if(this.props.cards){
+      this.setState({cards: this.props.cards});
+    }
   }
 
   /**
@@ -126,23 +133,11 @@ class Review extends React.Component {
     // If finished then render message
     if(this.state.finished){
       cardNodes.push(
-        <div className="cardScore">
-
-          <div className="cardScore-stats">
-            <div className="cardScore-stat cardScore-stat-correct">
-              <h4 className="cardScore-stat-title">Correct</h4>
-              <h4 className="cardScore-stat-score">{this.state.scoreCorrect}</h4>
-            </div>
-            <div className="cardScore-stat cardScore-stat-wrong">
-              <h4 className="cardScore-stat-title">Wrong</h4>
-              <h4 className="cardScore-stat-score">{this.state.scoreWrong}</h4>
-            </div>
-          </div>
-
-          <a href="/tags" className="cardScore-reviewMore">Review more cards</a>
-        </div>
+        <ScoreComponent correct={this.state.scoreCorrect} wrong={this.state.scoreWrong}></ScoreComponent>
       );
     }
+
+    console.log(cardNodes)
 
     return (
       <div className="card-container">
@@ -155,6 +150,7 @@ class Review extends React.Component {
 
 Review.propTypes = {
   tags: React.PropTypes.string
+, cards: React.PropTypes.array
 };
 
 export default Review;

@@ -1,4 +1,5 @@
-.landing-logo
+.landing-logo,
+.demo-logo
   background: url('/assets/img/logo.png')
   background-position: top right
   background-repeat: no-repeat
@@ -39,6 +40,9 @@
   font-weight: 600
   font-size: 13px
   color: #8C897F
+
+.landing-demo
+  margin-right: 15px
 
 .landing-auth
   background: $color-red
@@ -88,6 +92,7 @@
   @include animation(fadeIn .5s 2s)
   @include animation-fill-mode(forwards)
 .landing-auth,
+.landing-demo,
 .landing-cards-small
   opacity: 0
   @include animation(fadeIn .5s 3.6s)
