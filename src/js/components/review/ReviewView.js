@@ -104,8 +104,7 @@ class Review extends React.Component {
   */
   render() {
     // Generate card nodes from cards in state
-    var cardNodes = []
-    this.state.cards.map(function(card, index){
+    var cardNodes = this.state.cards.map(function(card, index){
       return (
         <CardComponent
           card={card}
@@ -124,6 +123,8 @@ class Review extends React.Component {
         <ScoreComponent correct={this.state.scoreCorrect} wrong={this.state.scoreWrong}></ScoreComponent>
       );
     }
+
+    console.log(cardNodes)
 
     return (
       <div className="card-container">
