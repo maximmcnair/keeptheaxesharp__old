@@ -44,13 +44,23 @@ class Card extends React.Component {
     this.markWrong = this.markWrong.bind(this);
   }
 
+  /**
+   * @desc flip card
+   */
   flipCard () {
     this.props.flipCard();
   }
 
+  /**
+   * @desc markCorrect marks card correct
+   */
   markCorrect () {
     this.props.markCardCorrect(true);
   }
+
+  /**
+   * @desc markWrong marks card wrong
+   */
   markWrong () {
     this.props.markCardCorrect(false);
   }

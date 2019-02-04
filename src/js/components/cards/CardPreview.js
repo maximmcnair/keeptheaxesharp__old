@@ -43,6 +43,9 @@ class CardPreview extends React.Component {
     this.showAnswer = this.showAnswer.bind(this);
   }
 
+  /**
+   * @desc shows answer for the card
+   */
   showAnswer(){
     this.setState({
       showAnswer: true

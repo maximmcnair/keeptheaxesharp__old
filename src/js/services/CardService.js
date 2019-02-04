@@ -6,6 +6,11 @@ import Qs from 'qs';
 import tags from './../fixtures/tags.js';
 
 let CardService =
+  /**
+   * @desc Gets user's cards
+   * @param {Object} query Query to get specific cards
+   * @param {Function} cb Callback function on success and failure of ajax
+   */
   { getAll: function (query, cb) {
       nanoajax.ajax({
         url: '/api/card?' + Qs.stringify(query)
@@ -20,6 +25,11 @@ let CardService =
         }
       });
     }
+    /**
+     * @desc Gets a card by it's id
+     * @param {String} id The id of the request card
+     * @param {Function} cb Callback function on success and failure of ajax
+     */
   , getOne: function (id, cb) {
       nanoajax.ajax({
         url: '/api/card/' + id
@@ -34,6 +44,11 @@ let CardService =
         }
       });
     }
+    /**
+     * @desc Create a card
+     * @param {Object} data Data of card intended to be created
+     * @param {Function} cb Callback function on success and failure of ajax
+     */
   , create: function (data, cb) {
       nanoajax.ajax({
         url: '/api/card'
@@ -49,6 +64,12 @@ let CardService =
         }
       });
     }
+    /**
+     * @desc Update a card
+     * @param {String} id Id of the specific card
+     * @param {Object} data Data of card intended to be updated
+     * @param {Function} cb Callback function on success and failure of ajax
+     */
   , update: function (id, data, cb) {
       nanoajax.ajax({
         url: '/api/card/' + id
@@ -64,6 +85,11 @@ let CardService =
         }
       });
     }
+    /**
+     * @desc Delete a card
+     * @param {String} id Id of the specific card
+     * @param {Function} cb Callback function on success and failure of ajax
+     */
   , delete: function (id, cb) {
       nanoajax.ajax({
         url: '/api/card/' + id
@@ -77,6 +103,10 @@ let CardService =
         }
       });
     }
+    /**
+     * @desc Tags user's tags
+     * @param {Function} cb Callback function on success and failure of ajax
+     */
   , getTags: function (cb) {
       nanoajax.ajax({
         url: '/api/tags'
